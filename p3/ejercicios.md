@@ -107,12 +107,54 @@ Control flow graph:
 | F    | A, B, C, F    |
 | G    | A, B, C, F, G |
 
-| Nodo | Post- Dominadores |
-|------|-------------------|
-| A    |                   |
-| B    |                   |
-| C    |                   |
-| D    |                   |
-| E    |                   |
-| F    |                   |
-| G    |                   |
+| Nodo | Post-Dominadores |
+|------|------------------|
+| A    | A, B, C, F, G    |
+| B    | B, C, F, G       |
+| C    | C, F, G          |
+| D    | D, F, G          |
+| E    | E, F, G          |
+| F    | F, G             |
+| G    | G                |
+
+Grafo control precedencia:
+<p align="center">
+  <img src="images/p3e5c.jpg" alt="Arbol de cómputo">
+</p>
+CHEQUEAR
+
+## Ejercicio 6
+
+
+## Ejercicio 7
+Control flow graph:
+<p align="center">
+  <img src="images/p3e7a.jpg" alt="Arbol de cómputo">
+</p>
+
+| Nodo | Dominadores      |
+|------|------------------|
+| A    | A                |
+| B    | A, B             |
+| C    | A, C             |
+| D    | A, C, D          |
+| E    | A, C, D, E       |
+| F    | A, C, D, E, F    |
+| G    | A, C, D, E, F, G |
+| H    | A, C, D, E, H    |
+
+| Nodo | Post-Dominadores |
+|------|------------------|
+| A    | A                |
+| B    | B                |
+| C    | C, D, E, H       |
+| D    | D, E, H          |
+| E    | E, H             |
+| F    | F, G, E, H       |
+| G    | G, E, H          |
+| H    | H                |
+
+Grafo control precedencia:
+<p align="center">
+  <img src="images/p3e7c.jpg" alt="Arbol de cómputo">
+</p>
