@@ -124,6 +124,32 @@ Grafo control precedencia:
 CHEQUEAR
 
 ## Ejercicio 6
+Control flow graph:
+<p align="center">
+  <img src="images/p3e6a.jpg" alt="Arbol de cómputo">
+</p>
+
+| Nodo | Dominadores |
+|------|-------------|
+| A    | A           |
+| B    | A, B        |
+| C    | A, B, C     |
+| D    | A, B, C, D  |
+| E    | A, B, E     |
+
+
+| Nodo | Post-Dominadores |
+|------|------------------|
+| A    | A, B, E          |
+| B    | B, E             |
+| C    | C, D, B, E       |
+| D    | D, B, E          |
+| E    | E                |
+
+Grafo control precedencia:
+<p align="center">
+  <img src="images/p3e6c.jpg" alt="Arbol de cómputo">
+</p>
 
 
 ## Ejercicio 7
@@ -157,4 +183,10 @@ Control flow graph:
 Grafo control precedencia:
 <p align="center">
   <img src="images/p3e7c.jpg" alt="Arbol de cómputo">
+</p>
+
+## Ejercicio 8
+Control flow graph:
+<p align="center">
+  <img src="images/p3e8a.jpg" alt="Arbol de cómputo">
 </p>
