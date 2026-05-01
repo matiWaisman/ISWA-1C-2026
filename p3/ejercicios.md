@@ -190,3 +190,55 @@ Control flow graph:
 <p align="center">
   <img src="images/p3e8a.jpg" alt="Arbol de cómputo">
 </p>
+
+| Nodo | Dominadores      |
+|------|------------------|
+| A    | A                |
+| B    | A, B             |
+| C    | A, B, C          |
+| D    | A, B, C, D       |
+| E    | A, B, C, D, E    |
+| F    | A, B, C, D, F    |
+| G    | A, B, C, D, F, G |
+| H    | A, B, C, H       |
+
+| Nodo | Post-Dominadores |
+|------|------------------|
+| A    | A, B, C          |
+| B    | B, C             |
+| C    | C                |
+| D    | D                |
+| E    | E                |
+| F    | F, G, C          |
+| G    | G, C             |
+| H    | H                |
+
+Grafo control precedencia:
+<p align="center">
+  <img src="images/p3e8c.jpg" alt="Arbol de cómputo">
+</p>
+
+| s     | Distancia (approach level) |
+|-------|----------------------------|
+| "a"   | 2                          |
+| "ab"  | 0                          |
+| "aba" | 1                          |
+| "abc" | 0                          |
+| ""    | 2                          |
+
+## Ejercicio 9
+Control flow graph:
+<p align="center">
+  <img src="images/p3e9a.jpg" alt="Arbol de cómputo">
+</p>
+
+
+| test_0                     | distanceTrue | distanceFalse |
+|----------------------------|--------------|---------------|
+| 3: while i < len(xs): # c1 | 3            | 0             |
+| 5: if xs[i] % 2 == 0: # c2 | inf          | inf           |
+
+| test_1                     | distanceTrue | distanceFalse |
+|----------------------------|--------------|---------------|
+| 3: while i < len(xs): # c1 | 0            |               |
+| 5: if xs[i] % 2 == 0: # c2 |              |               |
