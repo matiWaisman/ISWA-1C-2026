@@ -95,3 +95,31 @@ La probabilidad de que el fuzzer elija el input "https://www.example.com/path?p3
 | "john.smith@subdomain.example.org"  | [2, 3, 5, 6, 7, 9, 10, 12, 13, 14, 15, 16] | $1/7^3 = 1/343$ |
 
 La probabilidad de que el fuzzer elija el input "alice.smith@subdomain.example.org" para mutarlo va a ser igual a: $frac{1}{343}$/(sumatoria de las energias) que es igual a $frac{1}{343}/ \frac{641}{196}$ = $\frac{4}{4487}$. 
+
+## Ejercicio 6
+| input                             | lineas cubiertas                             | energia         |
+|-----------------------------------|----------------------------------------------|-----------------|
+| "example"                         | [2, 3]                                       | $1/4^3 = 1/64$  |
+| "example.txt"                     | [2, 3]                                       | $1/4^3 = 1/64$  |
+| ""                                | [2, 3]                                       | $1/4^3 = 1/64$  |
+| "filename"                        | [2, 3]                                       | $1/4^3 = 1/64$  |
+| "/home/user/documents/"           | [2, 4, 5, 9, 10, 12, 13]                     | $1/2^3 = 1/8$   |
+| "/"                               | [2, 4, 5, 9, 10, 12, 13]                     | $1/2^3 = 1/8$   |
+| "/home/user/documents/report.pdf" | [2, 4, 5, 9, 10, 12, 15, 16, 19, 20, 21, 23] | $1/1^3 = 1$     |
+| "/home/user/documents/report"     | [2, 4, 5, 9, 10, 12, 15, 16, 17, 18, 23]     | $1/1^3 = 1$     |
+
+La probabilidad de que el fuzzer elija el input "/home/user/documents/report.pdf" para mutarlo va a ser igual a: $1$/(sumatoria de las energias) que es igual a $1/ \frac{37}{16}$ = $\frac{16}{37}$. 
+
+## Ejercicio 7
+| input                                                                    | lineas cubiertas                                                | energia         |
+|--------------------------------------------------------------------------|-----------------------------------------------------------------|-----------------|
+| "[2024-11-25 15:28:00] INFO: "                                           | [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20]                             | $1/1^3 = 1$     |
+| "[2024-11-25 15:29:00] INFO: User 'admin' logged"                        | [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 20]     | $1/1^3 = 1$     |
+| "[2024-11-25 15:30:00] INFO: User 'admin' logged in from "               | [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18] | $1/6^3 = 1/216$ |
+| "[2024-11-25 15:31:00] INFO: User 'student0' logged in from "            | [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18] | $1/6^3 = 1/216$ |
+| "[2024-11-25 15:32:00] INFO: User 'student2' logged in from "            | [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18] | $1/6^3 = 1/216$ |
+| "[2024-11-25 15:32:00] INFO: User 'student3' logged in from "            | [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18] | $1/6^3 = 1/216$ |
+| "[2024-11-25 15:32:00] INFO: User 'student4' logged in from "            | [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18] | $1/6^3 = 1/216$ |
+| "[2024-11-25 15:30:00] INFO: User 'student4' logged in from 192.168.1.1" | [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18] | $1/6^3 = 1/216$ |
+
+La probabilidad de que el fuzzer elija el input "[2024-11-25 15:30:00] INFO: User 'student4' logged in from 192.168.1.1" para mutarlo va a ser igual a: $\frac{1}{216}$/(sumatoria de las energias) que es igual a $\frac{1}{216}/ \frac{73}{36}$ = $\frac{1}{438}$. 
