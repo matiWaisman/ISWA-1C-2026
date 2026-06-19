@@ -38,28 +38,28 @@ Entonces el cuadro final va a ser:
 TODO
 
 # Ejercicio 3
-![cfg](ej3.png)
-Son ctes MASK, IA, IQ, IR, IM y AM
+<img src="images/ej3.png" alt="cfg" width="500">
+
 | Nodo n | IN[n]            | OUT[n]           |
-|---------|------------------|------------------|
-| 1       | -                | {pid}            |
-| 2       | {pid}            | {pid}            |
-| 3       | {pid}            | {pid, i}         |
-| 4       | {pid, i}         | {pid, k, i}      |
-| 5       | {pid, k, i}      | {pid, k, j}      |
-| 6       | {pid, k, j}      | {pid, k, h}      |
-| 7       | {pid, k, h}      | {pid, k, h}      |
-| 8       | {pid, k}         | {pid, k, h}      |
-| 9       | {pid, k, h}      | {answer, pid, k} |
-| 10      | {answer, pid, k} | {}               |
-| 11      | {}               | -                |
+|--------|------------------|------------------|
+| 1      | -                | {pid}            |
+| 2      | {pid}            | {pid}            |
+| 3      | {pid}            | {pid, i}         |
+| 4      | {pid, i}         | {pid, k, i}      |
+| 5      | {pid, k, i}      | {pid, k, j}      |
+| 6      | {pid, k, j}      | {pid, k, h}      |
+| 7      | {pid, k, h}      | {pid, k, h}      |
+| 8      | {pid, k}         | {pid, k, h}      |
+| 9      | {pid, k, h}      | {answer, pid, k} |
+| 10     | {answer, pid, k} | {}               |
+| 11     | {}               | -                |
 
 (Preguntar si el parametro pid cuenta y si las declaraciones no se agregan)
 
 Si las constantes fueran variables aparecerian en el conjunto in la primera vez que se las usa y no "moririan" nunca porque nunca son reasignadas, o si se asignaran todas al principio moririan al principio (yendo del final hacia el principio).
 
 # Ejercicio 4
-![alt text](ej4.png)
+<img src="images/ej4.png" alt="Ejercicio 4" width="500">
 | Iteración | Nodo n | IN[n]                   | OUT[n]                  |
 |-----------|--------|-------------------------|-------------------------|
 | 1         | 1      | -                       | {}                      |
@@ -115,7 +115,7 @@ Entonces la tabla final queda:
 | Must | Available Expressions | Very Busy Expressions |
 
 # Ejercicio 6
-![alt text](ej6.png)
+<img src="images/ej6.png" alt="Ejercicio 6" width="500">
 
 | Iteración | Nodo n | IN[n]     | OUT[n]    |
 |-----------|--------|-----------|-----------|
@@ -166,7 +166,7 @@ Estado final:
 
 
 # Ejercicio 7
-![alt text](ej7.png)
+<img src="images/ej7.png" alt="Ejercicio 7" width="500">
 | Nodo n | IN[n]          | OUT[n]         |
 |---------|----------------|----------------|
 | 1       | -              | {}             |
@@ -185,7 +185,7 @@ Estado final:
 | 14      | {x + y, w * z} | -              |
 
 # Ejercicio 8
-![alt text](ej8.png)
+<img src="images/ej8.png" alt="Ejercicio 8" width="500">
 
 | Iteracion | Nodo n | IN[n]                                             | OUT[n]                                                   |
 |-----------|--------|---------------------------------------------------|----------------------------------------------------------|
