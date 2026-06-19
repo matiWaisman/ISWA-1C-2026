@@ -60,6 +60,7 @@ Si las constantes fueran variables aparecerian en el conjunto in la primera vez 
 
 # Ejercicio 4
 <img src="images/ej4.png" alt="Ejercicio 4" width="500">
+
 | Iteración | Nodo n | IN[n]                   | OUT[n]                  |
 |-----------|--------|-------------------------|-------------------------|
 | 1         | 1      | -                       | {}                      |
@@ -167,6 +168,7 @@ Estado final:
 
 # Ejercicio 7
 <img src="images/ej7.png" alt="Ejercicio 7" width="500">
+
 | Nodo n | IN[n]          | OUT[n]         |
 |---------|----------------|----------------|
 | 1       | -              | {}             |
