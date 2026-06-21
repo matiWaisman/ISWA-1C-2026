@@ -50,3 +50,34 @@ Si los elementos de $S$ no son comparables, entonces no existe el reticulado de 
 Suponiendo que ahora los elementos de $S$ cumplan $A \sqsubseteq B \sqsubseteq C$, entonces el diagrama de Hasse seria: 
 
 <img src="images/ej33.png" alt="hasse">
+
+# Ejercicio 4 
+## Diagrama 1 
+
+$\varphi(\sqcup X) = \begin{cases} + & \text{si } + \in X, \\ 0 & \text{en caso contrario.} \end{cases}$
+
+Las cadenas incrementales van a ser: $\{(-), (0), (+), (-,0), (0,+), (-,+), (-,0,+)\}$
+
+## Diagrama 2 
+TODO
+
+## Diagrama 3 
+TODO 
+
+# Ejercicio 5
+TODO
+
+# Ejercicio 6 
+<img src="images/ej6.png" alt="hasse">
+
+| $E_1 + E_2$ | $\bot$ | $-$    | $0$      | $+$    | $\leq 0$ | $\geq 0$ | $\top$ |
+|-------------|--------|--------|----------|--------|----------|----------|--------|
+| $\bot$      | $\bot$ | $\bot$ | $\bot$   | $\bot$ | $\bot$   | $\bot$   | $\bot$ |
+| $-$         | $\bot$ | $-$    | $-$      | $\top$ | $-$      | $\top$   | $\top$ |
+| $0$         | $\bot$ | $-$    | $0$      | $+$    | $\leq 0$ | $\geq 0$ | $\top$ |
+| $+$         | $\bot$ | $\top$ | $+$      | $+$    | $\top$   | $+$      | $\top$ |
+| $\leq 0$    | $\bot$ | $-$    | $\leq 0$ | $\top$ | $\leq 0$ | $\top$   | $\top$ |
+| $\geq 0$    | $\bot$ | $\top$ | $\geq 0$ | $+$    | $\top$   | $\geq 0$ | $\top$ |
+| $\top$      | $\bot$ | $\top$ | $\top$   | $\top$ | $\top$   | $\top$   | $\top$ |
+
+# Ejercicio 7
