@@ -56,7 +56,21 @@ TODO
 
 (Preguntar si el parametro pid cuenta y si las declaraciones no se agregan)
 
-Si las constantes fueran variables aparecerian en el conjunto in la primera vez que se las usa y no "moririan" nunca porque nunca son reasignadas, o si se asignaran todas al principio moririan al principio (yendo del final hacia el principio).
+Tabla en caso de que las constantes sean variables: 
+
+| Nodo n | IN[n]                                 | OUT[n]                                |
+|--------|---------------------------------------|---------------------------------------|
+| 1      | -                                     | {pid, AM, IM, MASK, IA, IQ, IR}       |
+| 2      | {pid, AM, IM, MASK, IA, IQ, IR}       | {pid, AM, IM, MASK, IA, IQ, IR}       |
+| 3      | {pid, AM, IM, MASK, IA, IQ, IR}       | {pid, AM, IM, MASK, IA, i, IQ, IR}    |
+| 4      | {pid, AM, IM, MASK, IA, i, IQ, IR}    | {pid, k, AM, IM, MASK, IA, i, IQ, IR} |
+| 5      | {pid, k, AM, IM, MASK, IA, i, IQ, IR} | {pid, k, AM, IM, j, MASK}             |
+| 6      | {pid, k, AM, IM, j, MASK}             | {pid, k, AM, h, IM}                   |
+| 7      | {pid, k, AM, h, IM}                   | {pid, k, AM, h, IM}                   |
+| 8      | {pid, k, AM, h, IM}                   | {pid, k, AM, h}                       |
+| 9      | {pid, k, AM, h}                       | {answer, pid, k}                      |
+| 10     | {answer, pid, k}                      | {}                                    |
+| 11     | {}                                    | -                                     |
 
 # Ejercicio 4
 <img src="images/ej4.png" alt="Ejercicio 4" width="500">
