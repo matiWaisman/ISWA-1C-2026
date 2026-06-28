@@ -122,7 +122,7 @@ def testme(n: int) -> int:
     if n >= 0:
         i: int = 0
         while i < n:
-            if i % 2 != 0:
+            if i % 2 >= 1:
                 r = r + i
             i = i + 1
     return r
@@ -297,8 +297,8 @@ def testme(k: int, j: int) -> int:
     r: int = 1
     if k > 0 and k < 3:  # C1
         i: int = 0
-        while i < k:  # C2
-            r = abs(r) * j
+        while i < abs(k):  # C2
+            r = r * j
             i = i + 1
     return r
 ```
