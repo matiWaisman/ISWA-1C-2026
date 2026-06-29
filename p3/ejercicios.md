@@ -56,12 +56,12 @@ Si tomamos los minimos nos queda:
 ## Ejercicio 3 
 | test_1 | distanceTrue | distanceFalse |
 |--------|--------------|---------------|
-| C1     | 5            | 0             |
+| C1     | 6            | 0             |
 | C2     | inf          | inf           |
 
 | test_2 | distanceTrue | distanceFalse |
 |--------|--------------|---------------|
-| C1     | 0            | 3             |
+| C1     | 0            | 8             |
 | C2     | 5            | 0             |
 
 Si tomamos los minimos nos queda: 
@@ -151,6 +151,7 @@ Grafo control precedencia:
   <img src="images/p3e6c.jpg" alt="Arbol de cómputo">
 </p>
 
+El arco de B a E esta mal, el arco a E es de foo a E. 
 
 ## Ejercicio 7
 Control flow graph:
@@ -185,6 +186,8 @@ Grafo control precedencia:
   <img src="images/p3e7c.jpg" alt="Arbol de cómputo">
 </p>
 
+El arco de E a H esta mal, el arco a H es de A a H.
+
 ## Ejercicio 8
 Control flow graph:
 <p align="center">
@@ -217,6 +220,8 @@ Grafo control precedencia:
 <p align="center">
   <img src="images/p3e8c.jpg" alt="Arbol de cómputo">
 </p>
+
+El arco de C a H esta mal, el arco a H es de root a H.
 
 | s     | Distancia (approach level) |
 |-------|----------------------------|

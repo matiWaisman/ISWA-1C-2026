@@ -254,9 +254,13 @@ El reticulado va a ser:
 <img src="images/hasse_ej12.png" alt="hasse">
 
 -$\bot$ representa que la cola no fue creada. 
+
 -`empty` que esta creada y no contiene a ningun elemento. 
+
 -`1e` que fue creada y tiene exactamente un elemento encolado. 
+
 -`>1e` que fue creada y tiene una cantidad de elementos mayor a 1. 
+
 -$\top$ representa que la cola fue creada pero no tenemos certeza sobre la cantidad de elementos en la cola. 
 
 | Estado actual (q) | enqueue(q,e) | dequeue(q) |

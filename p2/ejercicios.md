@@ -22,16 +22,16 @@
 </p>
 
 ## Ejercicio 3
+| Iteración | Input Concreto | Condición de Ruta                                                                            | Fórmula enviada al demostrador                                                          | Resultado posible |
+|-----------|----------------|----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|-------------------|
+| 1         | x=0            | $C1_0 \land \neq C2_0 \land C1_1 \land \neq C2_1 \land C1_2 \land \neq C2_2 \land \neg C1_3$ | $C1_0 \land \neq C2_0 \land C1_1 \land \neq C2_1 \land C1_2 \land \neq C2_2 \land C1_3$ | UNSAT             |
+|           |                |                                                                                              | $C1_0 \land \neq C2_0 \land C1_1 \land \neq C2_1 \land C1_2 \land C2_2$                 | x=9               |
+| 2         | x=9            | $C1_0 \land \neq C2_0 \land C1_1 \land \neq C2_1 \land C1_2 \land C2_2$                      | $C1_0 \land \neq C2_0 \land C1_1 \land \neq C2_1 \land \neg C1_2$                       | UNSAT             |
+|           |                |                                                                                              | $C1_0 \land \neq C2_0 \land C1_1 \land C2_1$                                            | x=7               |
+| 3         | x=7            | $C1_0 \land \neq C2_0 \land C1_1 \land C2_1$                                                 | $C1_0 \land \neq C2_0 \land \neg C1_1$                                                  | UNSAT             |
+|           |                |                                                                                              | $C1_0 \land C2_0 $                                                                      | x=5               |
+| 4         | x=5            | $C1_0 \land C2_0$                                                                            | $\neg C1_0 $                                                                            | UNSAT             |
 
-| Iteración | Input Concreto | Condición de Ruta                                                                                | Fórmula enviada al demostrador                                                              | Resultado posible |
-|-----------|----------------|--------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|-------------------|
-| 7         | x=5            | $\;C1_0 \land C2_0$                                                                              | $\neg \;C1_0$                                                                               | UNSAT             |
-| 6         | x=7            | $\;C1_0 \land \neg C2_0 \land C1_1$                                                              | $\;C1_0 \land C2_0$                                                                         | x=5               |
-| 4         | x=9            | $\;C1_0 \land \neg C2_0 \land C1_1 \land \neg C2_1$                                              | $\;C1_0 \land \neg C2_0 \land C1_1 \land C2_1$                                              | x=7               |
-| 2         | x=0            | $\;C1_0 \land \neg C2_0 \land C1_1 \land \neg C2_1 \land C1_2 \land \neg C2_2$                   | $\;C1_0 \land \neg C2_0 \land C1_1 \land \neg C2_1 \land C1_2 \land C2_2$                   | x=9               |
-| 1         | x=0            | $\;C1_0 \land \neg C2_0 \land C1_1 \land \neg C2_1 \land C1_2 \land \neg C2_2 \land \neg C1_3\;$ | $\;C1_0 \land \neg C2_0 \land C1_1 \land \neg C2_1 \land C1_2 \land \neg C2_2 \land C1_3\;$ | UNSAT             |
-| 3         | x=9            | $\;C1_0 \land \neg C2_0 \land C1_1 \land \neg C2_1 \land C1_2 \land C2_2$                        | $\;C1_0 \land \neg C2_0 \land C1_1 \land \neg C2_1 \land \neg C1_2$                         | UNSAT             |
-| 5         | x=7            | $\;C1_0 \land \neg C2_0 \land C1_1 \land C2_1$                                                   | $\;C1_0 \land \neg C2_0 \land \neg C1_1$                                                    | UNSAT             |
 
 <p align="center">
   <img src="images/ej3.jpg" alt="Arbol de cómputo">
@@ -77,12 +77,14 @@
 </p>
 
 ## Ejercicio 7
-
 | Iteración | Input Concreto | Condición de Ruta                          | Fórmula enviada al demostrador        | Resultado posible |
 |-----------|----------------|--------------------------------------------|---------------------------------------|-------------------|
 | 1         | k=0, j=0       | $\neg C1$                                  | $C1$                                  | k=1, j=0          |
 | 2         | k=1, j=0       | $C1 \land C2_0 \land \neg C2_1$            | $C1 \land C2_0 \land C2_1$            | k=2, j=0          |
-| 3         | k=2, j=0       | $C1 \land C2_0 \land C2_1 \land \neg C2_2$ | $C1 \land C2_0 \land C2_1 \land C2_2$ | UNSAT                  |
+| 3         | k=2, j=0       | $C1 \land C2_0 \land C2_1 \land \neg C2_2$ | $C1 \land C2_0 \land C2_1 \land C2_2$ | UNSAT             |
+|           |                |                                            | $C1 \land \neg C2_0$                  | UNSAT             |
+
+
 
 <p align="center">
   <img src="images/ej7.jpg" alt="Arbol de cómputo">
