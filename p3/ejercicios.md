@@ -149,9 +149,7 @@ Control flow graph:
 Grafo control precedencia:
 <p align="center">
   <img src="images/p3e6c.jpg" alt="Arbol de cómputo">
-</p>
-
-El arco de B a E esta mal, el arco a E es de foo a E. 
+</p> 
 
 ## Ejercicio 7
 Control flow graph:
@@ -186,8 +184,6 @@ Grafo control precedencia:
   <img src="images/p3e7c.jpg" alt="Arbol de cómputo">
 </p>
 
-El arco de E a H esta mal, el arco a H es de A a H.
-
 ## Ejercicio 8
 Control flow graph:
 <p align="center">
@@ -221,7 +217,6 @@ Grafo control precedencia:
   <img src="images/p3e8c.jpg" alt="Arbol de cómputo">
 </p>
 
-El arco de C a H esta mal, el arco a H es de root a H.
 
 | s     | Distancia (approach level) |
 |-------|----------------------------|

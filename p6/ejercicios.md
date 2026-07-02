@@ -58,11 +58,38 @@ $\varphi(\sqcup X) = \begin{cases} + & \text{si } + \in X, \\ 0 & \text{en caso 
 
 Las cadenas incrementales van a ser: $\{(-), (0), (+), (-,0), (0,+), (-,+), (-,0,+)\}$
 
+$\varphi$ es monotona ya que: 
+- Se cumple que $S$ es un poset completo ya que para toda cadena $C$ de elementos conectadas por $\sqsubseteq$ en $S$, existe $\sqcup C$. 
+- Se cumple que $\forall x, y \in S: x \sqsubseteq y \implies f(x) \sqsubseteq f(y)$.
+
+Existe un mínimo punto fijo porque $S$ es un poset completo y $\varphi$ es continua: como $S$ es finito, que $\varphi$ sea monótona implica que sea continua.
+
+Ese minimo punto fijo se puede calcular iterativamente como: 
+1. $\varphi(-) = 0$
+2. $\varphi(0) = 0$ 
+
+Por lo tanto el lfp es 0. 
 ## Diagrama 2 
-TODO
+\varphi(\sqcup X) va a ser:
+
+1. $X = \{-\} \to \sqcup X = - \to \varphi(\sqcup X) = 0$
+2. $X = \{0\} \to \sqcup X = 0 \to \varphi(\sqcup X) = -$
+3. $X = \{+\} \to \sqcup X = + \to \varphi(\sqcup X) = +$
+4. $X = \{-,0\} \to \sqcup X = 0 \to \varphi(\sqcup X) = -$
+5. $X = \{-,+\} \to \sqcup X = + \to \varphi(\sqcup X) = +$
+6. $X = \{0,+\} \to \sqcup X = + \to \varphi(\sqcup X) = +$
+7. $X = \{-,0,+\} \to \sqcup X = + \to \varphi(\sqcup X) = +$
+
+Las cadenas incrementales van a ser las mismas que las del diagrama anterior, ya que no dependen de $\varphi$: $\{(-), (0), (+), (-,0), (0,+), (-,+), (-,0,+)\}$. 
+
+$\varphi$ no es monotona porque no se cumple que $\forall x, y \in S: x \sqsubseteq y \implies f(x) \sqsubseteq f(y)$, para $x = -$ e $y = 0$ $- \sqsubseteq 0$ pero $\varphi(0) \sqsubseteq \varphi(-)$.
+
+El teorema de Kleene no nos sirve para calcular el lfp, pero aun asi $+$ es el lfp porque es el unico punto fijo. 
 
 ## Diagrama 3 
-TODO 
+$\varphi(\sqcup X) = \begin{cases} \top & \text{si } \top \in X \lor + \in X, \\ 0 & \text{en caso contrario.} \end{cases}$
+
+$\varphi$ es monotona y su lfp es $0$. 
 
 # Ejercicio 5
 TODO
