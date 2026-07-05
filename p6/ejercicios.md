@@ -92,7 +92,29 @@ $\varphi(\sqcup X) = \begin{cases} \top & \text{si } \top \in X \lor + \in X, \\
 $\varphi$ es monotona y su lfp es $0$. 
 
 # Ejercicio 5
-TODO
+El teorema del punto fijo no se cumple sin la suposición de que f es monótona, como ejemplo podemos considerar el cpo completo: 
+
+```
+        top
+       /   \
+      a     b
+       \   /
+        bot
+```
+
+Y definimos la funcion no monótona $\varphi$: 
+$
+\varphi : L \to L, \qquad
+\varphi(x) =
+\begin{cases}
+a & \text{si } x = a \\
+b & \text{si } x = \bot \\
+\top & \text{si } x = b \\
+\bot & \text{si } x = \top
+\end{cases}
+$
+
+La función tiene un punto fijo (y como es unico es el lfp), pero no podemos usar la construcción para calcularlo iterativamente, porque si arrancamos de $\bot$ tenemos un ciclo infinito.  
 
 # Ejercicio 6 
 <img src="images/ej6.png" alt="hasse">
@@ -108,7 +130,17 @@ TODO
 | $\top$      | $\bot$ | $\top$ | $\top$   | $\top$ | $\top$   | $\top$   | $\top$ |
 
 # Ejercicio 7
-TODO
+En vez de hablar sobre funciones, habria que pasar las funciones de variables a signos a reticulados de variables a signos. 
+
+La relacion de orden $d_1 \sqsubseteq d_2$ va a valer cuando $d_1$ es mas preciso que $d_2$. 
+
+Para que $d_1$ sea mas preciso que $d_2$ tiene que pasar que todas las asignaciones de variables a signos que tenga $d_1$ tienen que ser igual o mas precisas que las asignaciones que tiene $d_2$.
+
+Preguntar si la idea es que sea en todos los niveles las $n$ variables y por cada nivel una se cambia de bot a algo menos preciso, o es a medida que subis perdes variables. 
+
+Preguntar si vale decir algo como: 
+
+$d_1 \sqsubseteq d_2 \iff \forall v, E, E'.\ \big([v \mapsto E] \in d_1 \land [v \mapsto E'] \in d_2\big) \to E \sqsubseteq E' \text{ en el reticulado de signos}$
 
 # Ejercicio 8
 El diagrama de Hasse del reticulado va a ser: 
@@ -179,9 +211,7 @@ $$
 (S \ \setminus \text{Todos los pares que contengan a } x) \ \cup \{(x, \text{Eval}(E_1) + \text{Eval}(E_2))\} \ \cup \ \{(x,z) \mid (z,\text{Eval}(E_1) + \text{Eval}(E_2)) \in S\}  & \text{si } n = x = E_1 + E_2 \\
 S & \text{sino}
 \end{cases}
-$$
-
-TODO Calcular ecuaciones con lo del punto fijo 
+$$ 
 
 | Iteracion | Nodo n | IN[n]                                   | OUT[n]                                  |
 |-----------|--------|-----------------------------------------|-----------------------------------------|

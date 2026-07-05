@@ -35,7 +35,11 @@ Entonces el cuadro final va a ser:
 | 7      | {(x,2), (y,3), (y,5), (x,6)} | -                            |
 
 # Ejercicio 2 
-TODO
+$\text{Transfer}(n, S) =
+\begin{cases}
+(S \downarrow \text{var}) \cup \{\langle \text{var}, n \rangle\} & \text{si } n = \text{var} := E \\[4pt]
+S & \text{en caso contrario}
+\end{cases}$
 
 # Ejercicio 3
 <img src="images/ej3.png" alt="cfg" width="500">
