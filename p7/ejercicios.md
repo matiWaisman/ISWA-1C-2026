@@ -169,7 +169,7 @@ Con contextos funcionales:
 # Ejercicio 2 
 Modificar el codigo haria en el punto D que si solo clonamos la funcion `multByTwo`, al llegar a `multByTwo_2` la primera vez pasando por `multByTwo` llamado por el nodo `m4` se haria un supremo entre $+$ y $\bot$ que da $+$ asi que no hay problema, pero en el segundo llamado desde el nodo `m7` se haria un supremo entre $Z$ y $+$ que da $\top$, por lo que como resultado final $y \to top$. Seria el mismo caso que sin hacer cloning. 
 
-Modificarlo en el punto E haria que como la cadena de llamadas es de tamaño 1, al llegar al entry de `multByTwo_2` haya que tambien tomar supremo entre el out de los nodos llamadores, cuando pasamos en la iteracion 1 habria que tomar el supremo entre $+$ y $\text{unreach}$ que es $+$, pero en el segundo llamado habria que tomar el supremo de $+$ y $Z$, que es $\top$. (PREGUNTAR si hay tercera iteracion donde todo se va a top). 
+Modificarlo en el punto E haria que como la cadena de llamadas es de tamaño 1, al llegar al entry de `multByTwo_2` haya que tambien tomar supremo entre el out de los nodos llamadores, cuando pasamos en la iteracion 1 habria que tomar el supremo entre $+$ y $\text{unreach}$ que es $+$, pero en el segundo llamado habria que tomar el supremo de $+$ y $Z$, que es $\top$. 
 
 Con contextos funcionales como tenemos "infinitos contextos", en ningun momento hay que tomar supremo y perder presicion. 
 
