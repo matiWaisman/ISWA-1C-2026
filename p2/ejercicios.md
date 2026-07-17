@@ -86,15 +86,13 @@
 | 1         | k=0, j=0       | $\neg C1$                                  | $C1$                                  | k=1, j=0          |
 | 2         | k=1, j=0       | $C1 \land C2_0 \land \neg C2_1$            | $C1 \land C2_0 \land C2_1$            | k=2, j=0          |
 | 3         | k=2, j=0       | $C1 \land C2_0 \land C2_1 \land \neg C2_2$ | $C1 \land C2_0 \land C2_1 \land C2_2$ | UNSAT             |
-|           |                |                                            | $C1 \land \neg C2_0$                  | UNSAT             |
-|           |                |                                            | END                                   |                   |
+|           |                |                                            | $C1 \land \neg C2_0$                  | k=3, j=0          |
+| 4         | k=3, j=0       | $C1 \land \neg C2_0$                       | END                                   |                   |
 
 
 <p align="center">
   <img src="images/ej7.jpg" alt="Arbol de cómputo">
 </p>
-
-REVISAR
 
 ## Ejercicio 8
 | Iteración | Input Concreto | Condición de Ruta                          | Fórmula enviada al demostrador        | Resultado posible |
@@ -102,6 +100,7 @@ REVISAR
 | 1         | k=0, j=0       | $\neg C1$                                  | $C1$                                  | k=1, j=0          |
 | 2         | k=1, j=0       | $C1 \land C2_0 \land \neg C2_1$            | $C1 \land C2_0 \land C2_1$            | k=2, j=0          |
 | 3         | k=2, j=0       | $C1 \land C2_0 \land C2_1 \land \neg C2_2$ | $C1 \land C2_0 \land C2_1 \land C2_2$ | UNSAT             |
+|           |                |                                            | $C1 \land \neg C2_0$                  | UNSAT             |
 |           |                |                                            | END                                   |                   |
 <p align="center">
   <img src="images/ej8.jpg" alt="Arbol de cómputo">
