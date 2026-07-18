@@ -138,7 +138,8 @@ El teorema del punto fijo no se cumple sin la suposición de que f es monótona,
         bot
 ```
 
-Y definimos la funcion no monótona $\varphi$: 
+Y definimos la funcion no monótona $\varphi$:
+
 $$
 \varphi : L \to L, \qquad
 \varphi(x) =
