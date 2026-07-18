@@ -75,7 +75,7 @@ Si tomamos los minimos nos queda:
 ## Ejercicio 4
 | test_1 | distanceTrue | distanceFalse |
 |--------|--------------|---------------|
-| C1     | 3            | 0             |
+| C1     | 4            | 0             |
 | C2     | inf          | inf           |
 
 | test_2 | distanceTrue | distanceFalse |
@@ -121,7 +121,6 @@ Grafo control precedencia:
 <p align="center">
   <img src="images/p3e5c.jpg" alt="Arbol de cómputo">
 </p>
-CHEQUEAR
 
 ## Ejercicio 6
 Control flow graph:
@@ -240,5 +239,49 @@ Control flow graph:
 
 | test_1                     | distanceTrue | distanceFalse |
 |----------------------------|--------------|---------------|
-| 3: while i < len(xs): # c1 | 0            |               |
-| 5: if xs[i] % 2 == 0: # c2 |              |               |
+| 3: while i < len(xs): # c1 | 0            | 0             |
+| 5: if xs[i] % 2 == 0: # c2 | 0            | 3             |
+
+| test_2                     | distanceTrue | distanceFalse |
+|----------------------------|--------------|---------------|
+| 3: while i < len(xs): # c1 | 0            | 0             |
+| 5: if xs[i] % 2 == 0: # c2 | 0            | 3             |
+
+| Nodo | Dominadores   |
+|------|---------------|
+| A    | A             |
+| B    | A, B          |
+| C    | A, B, C       |
+| D    | A, B, C, D    |
+| E    | A, B, C, D, E |
+| F    | A, B, C, D, F |
+| G    | A, B, C, D, G |
+| H    | A, B, C, H    |
+
+| Nodo | Post-Dominadores |
+|------|------------------|
+| A    | A, B, C, H       |
+| B    | B, C, H          |
+| C    | C, H             |
+| D    | D, G, C, H       |
+| E    | E, G, C, H       |
+| F    | F, G, C, H       |
+| G    | G, C, H          |
+| H    | H                |
+
+<p align="center">
+  <img src="images/p3e9d.jpg" alt="Control Dependency">
+</p>
+
+
+
+| Nodo                       | Distancia (Approach Level) |
+|----------------------------|----------------------------|
+| 1: s: int = 0              | 0                          |
+| 2: i: int = 0              | 0                          |
+| 3: while i < len(xs): # c1 | 0                          |
+| 4: if xs[i] % 2 == 0: # c2 | 0                          |
+| 5: s += xs[i]              | 0                          |
+| 7: s -= xs[i]              | 1                          |
+| 8: i += 1                  | 0                          |
+| 9: return s                |                            |
