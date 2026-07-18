@@ -44,21 +44,19 @@ S & \text{en caso contrario}
 # Ejercicio 3
 <img src="images/ej3.png" alt="cfg" width="500">
 
-| Nodo n | IN[n]            | OUT[n]           |
-|--------|------------------|------------------|
-| 1      | -                | {pid}            |
-| 2      | {pid}            | {pid}            |
-| 3      | {pid}            | {pid, i}         |
-| 4      | {pid, i}         | {pid, k, i}      |
-| 5      | {pid, k, i}      | {pid, k, j}      |
-| 6      | {pid, k, j}      | {pid, k, h}      |
-| 7      | {pid, k, h}      | {pid, k, h}      |
-| 8      | {pid, k}         | {pid, k, h}      |
-| 9      | {pid, k, h}      | {answer, pid, k} |
-| 10     | {answer, pid, k} | {}               |
-| 11     | {}               | -                |
-
-(Preguntar si el parametro pid cuenta y si las declaraciones no se agregan)
+| Nodo n | IN[n]       | OUT[n]      |
+|--------|-------------|-------------|
+| 1      | -           | {}          |
+| 2      | {}          | {}          |
+| 3      | {}          | {i}         |
+| 4      | {i}         | {k, i}      |
+| 5      | {k, i}      | {k, j}      |
+| 6      | {k, j}      | {k, h}      |
+| 7      | {k, h}      | {k, h}      |
+| 8      | {k}         | {k, h}      |
+| 9      | {k, h}      | {answer, k} |
+| 10     | {answer, k} | {}          |
+| 11     | {}          | -           |
 
 Tabla en caso de que las constantes sean variables: 
 
