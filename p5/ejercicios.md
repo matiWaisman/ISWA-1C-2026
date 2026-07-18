@@ -37,7 +37,7 @@ Entonces el cuadro final va a ser:
 # Ejercicio 2 
 $$\text{Transfer}(n, S) =
 \begin{cases}
-(S \downarrow \text{var}) \cup \{\langle \text{var}, n \rangle\} & \text{si } n = \text{var} := E \\[4pt]
+(S \downarrow \text{var}) \cup \{\langle \text{var}, n \rangle\} & \text{si } n = \text{var} := E \\
 S & \text{en caso contrario}
 \end{cases}$$
 
