@@ -167,18 +167,7 @@ La función tiene un punto fijo (y como es unico es el lfp), pero no podemos usa
 | $\top$      | $\bot$ | $\top$ | $\top$   | $\top$ | $\top$   | $\top$   | $\top$ |
 
 # Ejercicio 7
-En vez de hablar sobre funciones, habria que pasar las funciones de variables a signos a reticulados de variables a signos. 
-
-La relacion de orden $d_1 \sqsubseteq d_2$ va a valer cuando $d_1$ es mas preciso que $d_2$. 
-
-Para que $d_1$ sea mas preciso que $d_2$ tiene que pasar que todas las asignaciones de variables a signos que tenga $d_1$ tienen que ser igual o mas precisas que las asignaciones que tiene $d_2$.
-
-Preguntar si la idea es que sea en todos los niveles las $n$ variables y por cada nivel una se cambia de bot a algo menos preciso, o es a medida que subis perdes variables. 
-
-Preguntar si vale decir algo como: 
-
-$d_1 \sqsubseteq d_2 \iff \forall v, E, E'.\ \big([v \mapsto E] \in d_1 \land [v \mapsto E'] \in d_2\big) \to E \sqsubseteq E' \text{ en el reticulado de signos}$
-
+TODO
 # Ejercicio 8
 El diagrama de Hasse del reticulado va a ser: 
 <img src="images/ej8.png" alt="hasse">
