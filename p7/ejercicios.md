@@ -226,7 +226,7 @@ Entonces la tabla final va a ser:
 | m10    | $\left\lbrace x \to \top, y \to \top \right\rbrace$ | -                            |
 
 
-PREGUNTAR como seria con cloning porque hay algo que no estoy viendo de porque haria falta clonarlo. 
+Con cloning, nodos llamadores y contextos funcionales la tabla se veria igual paso a paso, la diferencia si es con contextos es que tendriamos antes apuntando los contextos a los mappings de variables a estados abstractos. 
 
 # Ejercicio 4 
 <img src="images/p7e4.png" alt="cfg">
