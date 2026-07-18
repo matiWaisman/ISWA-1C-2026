@@ -10,7 +10,12 @@ El poset va a ser $\{\mathbb{Z} \cup \{-\infty, \infty\}, \sqsubseteq\}$.
 Donde $x \sqsubseteq y$ va a estar definido como:
 
 $$
-x \sqsubseteq y \iff \begin{cases} x = -\infty \\ y = +\infty \\ x, y \in \mathbb{Z} \text{ y } x \leq_{\mathbb{Z}} y \end{cases}
+x \sqsubseteq y \iff
+\begin{cases}
+x = -\infty \\
+y = +\infty \\
+x, y \in \mathbb{Z} \text{ y } x \leq_{\mathbb{Z}} y
+\end{cases}
 $$
 
 $\bot = -\infty, \top = \infty$.
@@ -18,13 +23,23 @@ $\bot = -\infty, \top = \infty$.
 Podemos definir $\sqcup X$ como:
 
 $$
-\sqcup X = \begin{cases} +\infty & \text{si } +\infty \in X \\ \max\{ x \in \mathbb{Z} \mid x \in X \} & \text{si } +\infty \notin X \text{ y } X \cap \mathbb{Z} \neq \emptyset \\ -\infty & \text{si } +\infty \notin X \text{ y } X \cap \mathbb{Z} = \emptyset \end{cases}
+\sqcup X =
+\begin{cases}
++\infty & \text{si } +\infty \in X \\
+\max\{ x \in \mathbb{Z} \mid x \in X \} & \text{si } +\infty \notin X \text{ y } X \cap \mathbb{Z} \neq \emptyset \\
+-\infty & \text{si } +\infty \notin X \text{ y } X \cap \mathbb{Z} = \emptyset
+\end{cases}
 $$
 
 Y podemos definir a $\sqcap X$ como:
 
 $$
-\sqcap X = \begin{cases} -\infty & \text{si } -\infty \in X \\ \min\{ x \in \mathbb{Z} \mid x \in X \} & \text{si } -\infty \notin X \text{ y } X \cap \mathbb{Z} \neq \emptyset \\ +\infty & \text{si } -\infty \notin X \text{ y } X \cap \mathbb{Z} = \emptyset \end{cases}
+\sqcap X =
+\begin{cases}
+-\infty & \text{si } -\infty \in X \\
+\min\{ x \in \mathbb{Z} \mid x \in X \} & \text{si } -\infty \notin X \text{ y } X \cap \mathbb{Z} \neq \emptyset \\
++\infty & \text{si } -\infty \notin X \text{ y } X \cap \mathbb{Z} = \emptyset
+\end{cases}
 $$
 
 # Ejercicio 2 
@@ -59,7 +74,13 @@ Suponiendo que ahora los elementos de $S$ cumplan $A \sqsubseteq B \sqsubseteq C
 # Ejercicio 4 
 ## Diagrama 1 
 
-$$\varphi(\sqcup X) = \begin{cases} + & \text{si } + \in X, \\ 0 & \text{en caso contrario.} \end{cases}$$
+$$
+\varphi(\sqcup X) =
+\begin{cases}
++ & \text{si } + \in X, \\
+0 & \text{en caso contrario.}
+\end{cases}
+$$
 
 Las cadenas incrementales van a ser: $\{(-), (0), (+), (-,0), (0,+), (-,+), (-,0,+)\}$
 
@@ -92,7 +113,13 @@ $\varphi$ no es monotona porque no se cumple que $\forall x, y \in S: x \sqsubse
 El teorema de Kleene no nos sirve para calcular el lfp, pero aun asi $+$ es el lfp porque es el unico punto fijo. 
 
 ## Diagrama 3 
-$$\varphi(\sqcup X) = \begin{cases} \top & \text{si } \top \in X \lor + \in X, \\ 0 & \text{en caso contrario.} \end{cases}$$
+$$
+\varphi(\sqcup X) =
+\begin{cases}
+\top & \text{si } \top \in X \lor + \in X, \\
+0 & \text{en caso contrario.}
+\end{cases}
+$$
 
 $\varphi$ es monotona y su lfp es $0$. 
 
