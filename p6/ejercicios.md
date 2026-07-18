@@ -9,13 +9,17 @@ El poset va a ser $\{\mathbb{Z} \cup \{-\infty, \infty\}, \sqsubseteq\}$.
 
 Donde $x \sqsubseteq y$ va a estar definido como:
 
-$$x \sqsubseteq y \iff \begin{cases} x = -\infty \\ y = +\infty \\ x, y \in \mathbb{Z} \text{ y } x \leq_{\mathbb{Z}} y \end{cases}$$.
+$$
+x \sqsubseteq y \iff \begin{cases} x = -\infty \\ y = +\infty \\ x, y \in \mathbb{Z} \text{ y } x \leq_{\mathbb{Z}} y \end{cases}
+$$.
 
 $\bot = -\infty, \top = \infty$.
 
 Podemos definir $\sqcup X$ como: 
 
-$$\sqcup X = \begin{cases} +\infty & \text{si } +\infty \in X \\ \max\{ x \in \mathbb{Z} \mid x \in X \} & \text{si } +\infty \notin X \text{ y } X \cap \mathbb{Z} \neq \emptyset \\ -\infty & \text{si } +\infty \notin X \text{ y } X \cap \mathbb{Z} = \emptyset \end{cases}$$
+$$
+\sqcup X = \begin{cases} +\infty & \text{si } +\infty \in X \\ \max\{ x \in \mathbb{Z} \mid x \in X \} & \text{si } +\infty \notin X \text{ y } X \cap \mathbb{Z} \neq \emptyset \\ -\infty & \text{si } +\infty \notin X \text{ y } X \cap \mathbb{Z} = \emptyset \end{cases}
+$$
 
 Y podemos definir a $\sqcap X$ como: 
 
@@ -251,40 +255,40 @@ Entonces la tabla final es:
 El analisis va a ser igual al del taller, es un analisis forward may. 
 
 
-| Iteracion | Nodo n | IN[n]                          | OUT[n]                         |
-|-----------|--------|--------------------------------|--------------------------------|
-| 1         | 1      | -                              | {y -> bot, x -> bot, z -> bot} |
-| 1         | 2      | {y -> bot, x -> bot, z -> bot} | {y -> 0, x -> bot, z -> bot}   |
-| 1         | 3      | {y -> 0, x -> bot, z -> bot}   | {y -> 0, x -> 0, z -> bot}     |
-| 1         | 4      | {y -> 0, x -> 0, z -> bot}     | {y -> 0, x -> 0, z -> +}       |
-| 1         | 5      | {y -> 0, x -> 0, z -> +}       | {y -> 0, x -> 0, z -> +}       |
-| 1         | 6      | {y -> 0, x -> 0, z -> +}       | {y -> 0, x -> +, z -> +}       |
-| 1         | 7      | {y -> 0, x -> +, z -> +}       | {y -> 0, x -> +, z -> +}       |
-| 1         | 8      | {y -> 0, x -> +, z -> +}       | {y -> 0, x -> 0, z -> +}       |
-| 1         | 9      | {y -> 0, x -> 0, z -> +}       | -                              |
-| 2         | 1      | -                              | {y -> bot, x -> bot, z -> bot} |
-| 2         | 2      | {y -> bot, x -> bot, z -> bot} | {y -> 0, x -> bot, z -> bot}   |
-| 2         | 3      | {y -> 0, x -> bot, z -> bot}   | {y -> 0, x -> 0, z -> bot}     |
-| 2         | 4      | {y -> 0, x -> 0, z -> bot}     | {y -> 0, x -> 0, z -> +}       |
-| 2         | 5      | {y -> 0, x -> top, z -> +}     | {y -> 0, x -> top, z -> +}     |
-| 2         | 6      | {y -> 0, x -> top, z -> +}     | {y -> 0, x -> +, z -> +}       |
-| 2         | 7      | {y -> 0, x -> +, z -> +}       | {y -> 0, x -> +, z -> +}       |
-| 2         | 8      | {y -> 0, x -> +, z -> +}       | {y -> 0, x -> 0, z -> +}       |
-| 2         | 9      | {y -> 0, x -> 0, z -> +}       | -                              |
+| Iteracion | Nodo n | IN[n]                       | OUT[n]                      |
+|-----------|--------|-------------------------------|-------------------------------|
+| 1         | 1      | -                              | {y → ⊥, x → ⊥, z → ⊥}         |
+| 1         | 2      | {y → ⊥, x → ⊥, z → ⊥}         | {y → 0, x → ⊥, z → ⊥}         |
+| 1         | 3      | {y → 0, x → ⊥, z → ⊥}         | {y → 0, x → 0, z → ⊥}         |
+| 1         | 4      | {y → 0, x → 0, z → ⊥}         | {y → 0, x → 0, z → +}         |
+| 1         | 5      | {y → 0, x → 0, z → +}         | {y → 0, x → 0, z → +}         |
+| 1         | 6      | {y → 0, x → 0, z → +}         | {y → 0, x → +, z → +}         |
+| 1         | 7      | {y → 0, x → +, z → +}         | {y → 0, x → +, z → +}         |
+| 1         | 8      | {y → 0, x → +, z → +}         | {y → 0, x → 0, z → +}         |
+| 1         | 9      | {y → 0, x → 0, z → +}         | -                              |
+| 2         | 1      | -                              | {y → ⊥, x → ⊥, z → ⊥}         |
+| 2         | 2      | {y → ⊥, x → ⊥, z → ⊥}         | {y → 0, x → ⊥, z → ⊥}         |
+| 2         | 3      | {y → 0, x → ⊥, z → ⊥}         | {y → 0, x → 0, z → ⊥}         |
+| 2         | 4      | {y → 0, x → 0, z → ⊥}         | {y → 0, x → 0, z → +}         |
+| 2         | 5      | {y → 0, x → ⊤, z → +}         | {y → 0, x → ⊤, z → +}         |
+| 2         | 6      | {y → 0, x → ⊤, z → +}         | {y → 0, x → +, z → +}         |
+| 2         | 7      | {y → 0, x → +, z → +}         | {y → 0, x → +, z → +}         |
+| 2         | 8      | {y → 0, x → +, z → +}         | {y → 0, x → 0, z → +}         |
+| 2         | 9      | {y → 0, x → 0, z → +}         | -                              |
 
 Entonces la tabla final va a ser:
 
-| Nodo n | IN[n]                          | OUT[n]                         |
-|--------|--------------------------------|--------------------------------|
-| 1      | -                              | {y -> bot, x -> bot, z -> bot} |
-| 2      | {y -> bot, x -> bot, z -> bot} | {y -> 0, x -> bot, z -> bot}   |
-| 3      | {y -> 0, x -> bot, z -> bot}   | {y -> 0, x -> 0, z -> bot}     |
-| 4      | {y -> 0, x -> 0, z -> bot}     | {y -> 0, x -> 0, z -> +}       |
-| 5      | {y -> 0, x -> top, z -> +}     | {y -> 0, x -> top, z -> +}     |
-| 6      | {y -> 0, x -> top, z -> +}     | {y -> 0, x -> +, z -> +}       |
-| 7      | {y -> 0, x -> +, z -> +}       | {y -> 0, x -> +, z -> +}       |
-| 8      | {y -> 0, x -> +, z -> +}       | {y -> 0, x -> 0, z -> +}       |
-| 9      | {y -> 0, x -> 0, z -> +}       | -                              |
+| Nodo n | IN[n]                       | OUT[n]                      |
+|--------|-------------------------------|-------------------------------|
+| 1      | -                              | {y → ⊥, x → ⊥, z → ⊥}         |
+| 2      | {y → ⊥, x → ⊥, z → ⊥}         | {y → 0, x → ⊥, z → ⊥}         |
+| 3      | {y → 0, x → ⊥, z → ⊥}         | {y → 0, x → 0, z → ⊥}         |
+| 4      | {y → 0, x → 0, z → ⊥}         | {y → 0, x → 0, z → +}         |
+| 5      | {y → 0, x → ⊤, z → +}         | {y → 0, x → ⊤, z → +}         |
+| 6      | {y → 0, x → ⊤, z → +}         | {y → 0, x → +, z → +}         |
+| 7      | {y → 0, x → +, z → +}         | {y → 0, x → +, z → +}         |
+| 8      | {y → 0, x → +, z → +}         | {y → 0, x → 0, z → +}         |
+| 9      | {y → 0, x → 0, z → +}         | -                              |
 
 # Ejercicio 11
 
