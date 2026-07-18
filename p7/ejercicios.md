@@ -1,461 +1,157 @@
 # Ejercicio 1 
-Si no consideramos llamados y retornos el cfg seria: 
+<img src="images/cfg_ej1.png" alt="cfg">
 
-<img src="images/p7e1a.png" alt="cfg">
+El PTG al final del programa utilizando un análisis points-to flow-sensitive es: 
 
-| Nodo n | IN[n]                        | OUT[n]                       |
-|--------|------------------------------|------------------------------|
-| m1     | -                            | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$ |
-| m2     | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$ | $\left\lbrace x \to \top, y \to \top \right\rbrace$ |
-| m3     | $\left\lbrace x \to \top, y \to \top \right\rbrace$ | $\left\lbrace x \to >, y \to \top \right\rbrace$    |
-| m4     | $\left\lbrace x \to >, y \to \top \right\rbrace$    | $\left\lbrace x \to >, y \to \top \right\rbrace$    |
-| m5     | $\left\lbrace x \to >, y \to \top \right\rbrace$    | $\left\lbrace x \to 0, y \to \top \right\rbrace$    |
-| m6     | $\left\lbrace x \to 0, y \to \top \right\rbrace$    | $\left\lbrace x \to 0, y \to \top \right\rbrace$    |
-| m7     | $\left\lbrace x \to 0, y \to \top \right\rbrace$    | $\left\lbrace x \to 0, y \to \top \right\rbrace$    |
-| m8     | $\left\lbrace x \to 0, y \to \top \right\rbrace$    | -                            |
+<img src="images/p8e1b.png" alt="ptg">
 
-Asumo que print no modifica los parametros x e y, si lo hiciera habria que cambiar x a $\top$. 
+Usando el algoritmo de Andersen: 
 
-Si ahora si consideramos los llamados y retornos del cfg: 
+Las restricciones van a ser: 
 
-<img src="images/p7e1b.png" alt="cfg">
+1. $\left\lbrace A@1\right\rbrace \subseteq L(a)$
+2. $\left\lbrace B@2\right\rbrace \subseteq L(b)$
+3. $L(b) \subseteq \cap \left\lbrace E(k,f) | k \in L(a)\right\rbrace$
+4. $L(a) \subseteq L(c)$
+5. $L(a) \subseteq \cap \left\lbrace E(k,f) | k \in L(c)\right\rbrace$
+6. $L(b) \subseteq L(c)$
 
+Y el analisis: 
 
-Ahora considerando llamados y retornos pero sin cloning: 
-| Iteracion | Nodo n | IN[n]                                                                                           | OUT[n]                                       |
-|-----------|--------|-------------------------------------------------------------------------------------------------|----------------------------------------------|
-| 1         | m1     | -                                                                                               | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$                 |
-| 1         | m2     | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$                                                                    | $\left\lbrace x \to \top, y \to \top \right\rbrace$                 |
-| 1         | m3     | $\left\lbrace x \to \top, y \to \top \right\rbrace$                                                                    | $\left\lbrace x \to +, y \to \top \right\rbrace$                    |
-| 1         | m4     | $\left\lbrace x \to +, y \to \top \right\rbrace$                                                                       | $\left\lbrace x \to +, y \to \top \right\rbrace$                    |
-| 1         | mbt_11 | $\left\lbrace x_mbt \to +, \text{result} \to \bot \right\rbrace$ $\sqcup$ $\left\lbrace x_mbt \to \bot, \text{result} \to \bot \right\rbrace$ | $\left\lbrace x_mbt \to +, \text{result} \to \bot \right\rbrace$    |
-| 1         | mbt_21 | $\left\lbrace x_mbt \to +, \text{result} \to \bot \right\rbrace$                                                       | $\left\lbrace x_mbt \to +, \text{result} \to + \right\rbrace$       |
-| 1         | mbt_31 | $\left\lbrace x_mbt \to +, \text{result} \to + \right\rbrace$                                                          | $\left\lbrace x_mbt \to +, \text{result} \to + \right\rbrace$       |
-| 1         | mbt_41 | $\left\lbrace x_mbt \to +, \text{result} \to + \right\rbrace$                                                          | $\left\lbrace x_mbt \to +, \text{result} \to + \right\rbrace$       |
-| 1         | m5     | $\left\lbrace x \to +, y \to \top \right\rbrace$                                                                       | $\left\lbrace x \to +, y \to + \right\rbrace$                       |
-| 1         | m6     | $\left\lbrace x \to +, y \to \top \right\rbrace$                                                                       | $\left\lbrace x \to 0, y \to + \right\rbrace$                       |
-| 1         | m7     | $\left\lbrace x \to 0, y \to + \right\rbrace$                                                                          | $\left\lbrace x \to 0, y \to + \right\rbrace$                       |
-| 1         | mbt_12 | $\left\lbrace x_mbt \to +, \text{result} \to \bot \right\rbrace$ $\sqcup$ $\left\lbrace x_mbt \to 0, \text{result} \to \bot \right\rbrace$    | $\left\lbrace x_mbt \to \top, \text{result} \to \bot \right\rbrace$ |
-| 1         | mbt_22 | $\left\lbrace x_mbt \to \top, \text{result} \to \bot \right\rbrace$                                                    | $\left\lbrace x_mbt \to \top, \text{result} \to \top \right\rbrace$ |
-| 1         | mbt_32 | $\left\lbrace x_mbt \to \top, \text{result} \to \bot \right\rbrace$                                                    | $\left\lbrace x_mbt \to \top, \text{result} \to \top \right\rbrace$ |
-| 1         | mbt_42 | $\left\lbrace x_mbt \to \top, \text{result} \to \bot \right\rbrace$                                                    | $\left\lbrace x_mbt \to \top, \text{result} \to \top \right\rbrace$ |
-| 1         | m8     | $\left\lbrace x \to 0, y \to + \right\rbrace$                                                                          | $\left\lbrace x \to 0, y \to \top \right\rbrace$                    |
-| 1         | m9     | $\left\lbrace x \to 0, y \to \top \right\rbrace$                                                                       | $\left\lbrace x \to 0, y \to \top \right\rbrace$                    |
-| 1         | m10    | $\left\lbrace x \to 0, y \to \top \right\rbrace$                                                                       | -                                            |
-| 2         | m1     | -                                                                                               | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$                 |
-| 2         | m2     | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$                                                                    | $\left\lbrace x \to \top, y \to \top \right\rbrace$                 |
-| 2         | m3     | $\left\lbrace x \to \top, y \to \top \right\rbrace$                                                                    | $\left\lbrace x \to +, y \to \top \right\rbrace$                    |
-| 2         | m4     | $\left\lbrace x \to +, y \to \top \right\rbrace$                                                                       | $\left\lbrace x \to +, y \to \top \right\rbrace$                    |
-| 2         | mbt_11 | $\left\lbrace x_mbt \to +, \text{result} \to \bot \right\rbrace$ $\sqcup$ $\left\lbrace x_mbt \to 0, \text{result} \to \bot \right\rbrace$    | $\left\lbrace x_mbt \to \top, \text{result} \to \bot \right\rbrace$ |
-| 2         | mbt_21 | $\left\lbrace x_mbt \to \top, \text{result} \to \bot \right\rbrace$                                                    | $\left\lbrace x_mbt \to \top, \text{result} \to \top \right\rbrace$ |
-| 2         | mbt_31 | $\left\lbrace x_mbt \to \top, \text{result} \to \top \right\rbrace$                                                    | $\left\lbrace x_mbt \to \top, \text{result} \to \top \right\rbrace$ |
-| 2         | mbt_41 | $\left\lbrace x_mbt \to \top, \text{result} \to \top \right\rbrace$                                                    | $\left\lbrace x_mbt \to \top, \text{result} \to \top \right\rbrace$ |
-| 2         | m5     | $\left\lbrace x \to +, y \to \top \right\rbrace$                                                                       | $\left\lbrace x \to +, y \to \top \right\rbrace$                    |
-| 2         | m6     | $\left\lbrace x \to +, y \to \top \right\rbrace$                                                                       | $\left\lbrace x \to 0, y \to \top \right\rbrace$                    |
-| 2         | m7     | $\left\lbrace x \to 0, y \to \top \right\rbrace$                                                                       | $\left\lbrace x \to 0, y \to \top \right\rbrace$                    |
-| 2         | mbt_12 | $\left\lbrace x_mbt \to +, \text{result} \to \bot \right\rbrace$ $\sqcup$ $\left\lbrace x_mbt \to 0, \text{result} \to \bot \right\rbrace$    | $\left\lbrace x_mbt \to \top, \text{result} \to \bot \right\rbrace$ |
-| 2         | mbt_22 | $\left\lbrace x_mbt \to \top, \text{result} \to \bot \right\rbrace$                                                    | $\left\lbrace x_mbt \to \top, \text{result} \to \top \right\rbrace$ |
-| 2         | mbt_32 | $\left\lbrace x_mbt \to \top, \text{result} \to \bot \right\rbrace$                                                    | $\left\lbrace x_mbt \to \top, \text{result} \to \top \right\rbrace$ |
-| 2         | mbt_42 | $\left\lbrace x_mbt \to \top, \text{result} \to \bot \right\rbrace$                                                    | $\left\lbrace x_mbt \to \top, \text{result} \to \top \right\rbrace$ |
-| 2         | m8     | $\left\lbrace x \to 0, y \to + \right\rbrace$                                                                          | $\left\lbrace x \to 0, y \to \top \right\rbrace$                    |
-| 2         | m9     | $\left\lbrace x \to 0, y \to \top \right\rbrace$                                                                       | $\left\lbrace x \to 0, y \to \top \right\rbrace$                    |
-| 2         | m10    | $\left\lbrace x \to 0, y \to \top \right\rbrace$                                                                       | -                                            |
+- $L(a) = \left\lbrace A@1\right\rbrace$
+- $L(b) = \left\lbrace B@2\right\rbrace$
+- $L(c) = \left\lbrace A@1, B@2\right\rbrace$
+- $E(A@1, f) = \left\lbrace B@2, A@1\right\rbrace$
+- $E(B@2, f) = \left\lbrace A@1\right\rbrace$
 
-Entonces la tabla final queda: 
+El PTG final va a quedar: 
+<img src="images/p8e1c.png" alt="ptg">
 
-| Nodo n | IN[n]                                                                                        | OUT[n]                                       |
-|--------|----------------------------------------------------------------------------------------------|----------------------------------------------|
-| m1     | -                                                                                            | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$                 |
-| m2     | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$                                                                 | $\left\lbrace x \to \top, y \to \top \right\rbrace$                 |
-| m3     | $\left\lbrace x \to \top, y \to \top \right\rbrace$                                                                 | $\left\lbrace x \to +, y \to \top \right\rbrace$                    |
-| m4     | $\left\lbrace x \to +, y \to \top \right\rbrace$                                                                    | $\left\lbrace x \to +, y \to \top \right\rbrace$                    |
-| mbt_11 | $\left\lbrace x_mbt \to +, \text{result} \to \bot \right\rbrace$ $\sqcup$ $\left\lbrace x_mbt \to 0, \text{result} \to \bot \right\rbrace$ | $\left\lbrace x_mbt \to \top, \text{result} \to \bot \right\rbrace$ |
-| mbt_21 | $\left\lbrace x_mbt \to \top, \text{result} \to \bot \right\rbrace$                                                 | $\left\lbrace x_mbt \to \top, \text{result} \to \top \right\rbrace$ |
-| mbt_31 | $\left\lbrace x_mbt \to \top, \text{result} \to \top \right\rbrace$                                                 | $\left\lbrace x_mbt \to \top, \text{result} \to \top \right\rbrace$ |
-| mbt_41 | $\left\lbrace x_mbt \to \top, \text{result} \to \top \right\rbrace$                                                 | $\left\lbrace x_mbt \to \top, \text{result} \to \top \right\rbrace$ |
-| m5     | $\left\lbrace x \to +, y \to \top \right\rbrace$                                                                    | $\left\lbrace x \to +, y \to \top \right\rbrace$                    |
-| m6     | $\left\lbrace x \to +, y \to \top \right\rbrace$                                                                    | $\left\lbrace x \to 0, y \to \top \right\rbrace$                    |
-| m7     | $\left\lbrace x \to 0, y \to \top \right\rbrace$                                                                    | $\left\lbrace x \to 0, y \to \top \right\rbrace$                    |
-| mbt_12 | $\left\lbrace x_mbt \to +, \text{result} \to \bot \right\rbrace$ $\sqcup$ $\left\lbrace x_mbt \to 0, \text{result} \to \bot \right\rbrace$ | $\left\lbrace x_mbt \to \top, \text{result} \to \bot \right\rbrace$ |
-| mbt_22 | $\left\lbrace x_mbt \to \top, \text{result} \to \bot \right\rbrace$                                                 | $\left\lbrace x_mbt \to \top, \text{result} \to \top \right\rbrace$ |
-| mbt_32 | $\left\lbrace x_mbt \to \top, \text{result} \to \bot \right\rbrace$                                                 | $\left\lbrace x_mbt \to \top, \text{result} \to \top \right\rbrace$ |
-| mbt_42 | $\left\lbrace x_mbt \to \top, \text{result} \to \bot \right\rbrace$                                                 | $\left\lbrace x_mbt \to \top, \text{result} \to \top \right\rbrace$ |
-| m8     | $\left\lbrace x \to 0, y \to + \right\rbrace$                                                                       | $\left\lbrace x \to 0, y \to \top \right\rbrace$                    |
-| m9     | $\left\lbrace x \to 0, y \to \top \right\rbrace$                                                                    | $\left\lbrace x \to 0, y \to \top \right\rbrace$                    |
-| m10    | $\left\lbrace x \to 0, y \to \top \right\rbrace$                                                                    | -                                            |
+Si alternamos las lineas 4 y 6 el cfg va a ser: 
+<img src="images/cfg_ej1d.png" alt="cfg">
 
-La entrada para `print(x,y)` es $x \to 0, y \to \top$.
+EL PTG al final del programa utilizando un  análisis points-to flow-sensitive va a ser: 
+<img src="images/p8e1dflowins.png" alt="ptg">
 
-Con cloning:
+Usando el algoritmo de Andersen: 
+Las restricciones van a ser: 
+1. $\left\lbrace A@1\right\rbrace \subseteq L(a)$
+2. $\left\lbrace B@2\right\rbrace \subseteq L(b)$
+3. $L(b) \subseteq \cap \left\lbrace E(k,f) | k \in L(a)\right\rbrace$
+4. $L(b) \subseteq L(c)$
+5. $L(a) \subseteq \cap \left\lbrace E(k,f) | k \in L(c)\right\rbrace$
+6. $L(a) \subseteq L(c)$
 
-| Nodo n | IN[n]                                     | OUT[n]                                    |
-|--------|-------------------------------------------|-------------------------------------------|
-| m1     | -                                         | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$              |
-| m2     | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$              | $\left\lbrace x \to \top, y \to \top \right\rbrace$              |
-| m3     | $\left\lbrace x \to \top, y \to \top \right\rbrace$              | $\left\lbrace x \to >, y \to \top \right\rbrace$                 |
-| m4     | $\left\lbrace x \to >, y \to \top \right\rbrace$                 | $\left\lbrace x \to >, y \to \top \right\rbrace$                 |
-| mbt_11 | $\left\lbrace x_{m1} \to >, \text{res}_1 \to \bot \right\rbrace$ | $\left\lbrace x_{m1} \to >, \text{res}_1 \to \bot \right\rbrace$ |
-| mbt_12 | $\left\lbrace x_{m1} \to >, \text{res}_1 \to \bot \right\rbrace$ | $\left\lbrace x_{m1} \to >, \text{res}_1 \to > \right\rbrace$    |
-| mbt_13 | $\left\lbrace x_{m1} \to >, \text{res}_1 \to > \right\rbrace$    | $\left\lbrace x_{m1} \to >, \text{res}_1 \to > \right\rbrace$    |
-| mbt_14 | $\left\lbrace x_{m1} \to >, \text{res}_1 \to > \right\rbrace$    | $\left\lbrace x_{m1} \to >, \text{res}_1 \to > \right\rbrace$    |
-| m5     | $\left\lbrace x \to >, y \to \top \right\rbrace$                 | $\left\lbrace x \to >, y \to > \right\rbrace$                    |
-| m6     | $\left\lbrace x \to >, y \to > \right\rbrace$                    | $\left\lbrace x \to 0, y \to > \right\rbrace$                    |
-| m7     | $\left\lbrace x \to 0, y \to > \right\rbrace$                    | $\left\lbrace x \to 0, y \to > \right\rbrace$                    |
-| mbt_21 | $\left\lbrace x_{m2} \to 0, \text{res}_2 \to \bot \right\rbrace$ | $\left\lbrace x_{m1} \to 0, \text{res}_2 \to \bot \right\rbrace$ |
-| mbt_22 | $\left\lbrace x_{m2} \to 0, \text{res}_2 \to \bot \right\rbrace$ | $\left\lbrace x_{m1} \to 0, \text{res}_2 \to 0 \right\rbrace$    |
-| mbt_23 | $\left\lbrace x_{m2} \to 0, \text{res}_2 \to \bot \right\rbrace$ | $\left\lbrace x_{m1} \to 0, \text{res}_2 \to 0 \right\rbrace$    |
-| mbt_24 | $\left\lbrace x_{m2} \to 0, \text{res}_2 \to \bot \right\rbrace$ | $\left\lbrace x_{m1} \to 0, \text{res}_2 \to 0 \right\rbrace$    |
-| m8     | $\left\lbrace x \to 0, y \to > \right\rbrace$                    | $\left\lbrace x \to 0, y \to 0 \right\rbrace$                    |
-| m9     | $\left\lbrace x \to 0, y \to 0 \right\rbrace$                    | $\left\lbrace x \to 0, y \to 0 \right\rbrace$                    |
-| m10    | $\left\lbrace x \to 0, y \to 0 \right\rbrace$                    | -                                         |
+Y el analisis va a ser: 
 
-Con  cadenas de llamadas con k=1
-| Iteracion | Nodo n | IN[n]                                                                                                                   | OUT[n]                                                                                                                  |
-|-----------|--------|-------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
-| 1         | m1     | -                                                                                                                       | $\epsilon \to \left\lbrace x \to \bot, y \to \bot \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                               |
-| 1         | m2     | $\epsilon \to \left\lbrace x \to \bot, y \to \bot \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                               | $\epsilon \to \left\lbrace x \to \top, y \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                               |
-| 1         | m3     | $\epsilon \to \left\lbrace x \to \top, y \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                               | $\epsilon \to \left\lbrace x \to +, y \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                  |
-| 1         | m4     | $\epsilon \to \left\lbrace x \to +, y \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                  | $\epsilon \to \left\lbrace x \to +, y \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                  |
-| 1         | mbt_1  | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace x \to +, \text{result} \to \bot \right\rbrace, c_2 \to \text{unreach}$                      | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace x \to +, \text{result} \to \bot \right\rbrace, c_2 \to \text{unreach}$                      |
-| 1         | mbt_2  | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace x \to +, \text{result} \to \bot \right\rbrace, c_2 \to \text{unreach}$                      | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace x \to +, \text{result} \to + \right\rbrace, c_2 \to \text{unreach}$                         |
-| 1         | mbt_3  | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace x \to +, \text{result} \to + \right\rbrace, c_2 \to \text{unreach}$                         | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace x \to +, \text{result} \to + \right\rbrace, c_2 \to \text{unreach}$                         |
-| 1         | mbt_4  | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace x \to +, \text{result} \to + \right\rbrace, c_2 \to \text{unreach}$                         | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace x \to +, \text{result} \to + \right\rbrace, c_2 \to \text{unreach}$                         |
-| 1         | m5     | $\epsilon \to \left\lbrace x \to +, y \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                  | $\epsilon \to \left\lbrace x \to +, y \to + \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                     |
-| 1         | m6     | $\epsilon \to \left\lbrace x \to +, y \to + \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                     | $\epsilon \to \left\lbrace x \to Z, y \to + \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                     |
-| 1         | m7     | $\epsilon \to \left\lbrace x \to Z, y \to + \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                     | $\epsilon \to \left\lbrace x \to Z, y \to + \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                     |
-| 1         | m8     | $\epsilon \to \left\lbrace x \to Z, y \to + \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                     | $\epsilon \to \text{unreach}, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                           |
-| 1         | m9     | $\epsilon \to \text{unreach}, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                           | $\epsilon \to \text{unreach}, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                           |
-| 1         | m10    | $\epsilon \to \text{unreach}, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                           | -                                                                                                                       |
-| 2         | m1     | -                                                                                                                       | $\epsilon \to \left\lbrace x \to \bot, y \to \bot \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                               |
-| 2         | m2     | $\epsilon \to \left\lbrace x \to \bot, y \to \bot \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                               | $\epsilon \to \left\lbrace x \to \top, y \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                               |
-| 2         | m3     | $\epsilon \to \left\lbrace x \to \top, y \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                               | $\epsilon \to \left\lbrace x \to +, y \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                  |
-| 2         | m4     | $\epsilon \to \left\lbrace x \to +, y \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                  | $\epsilon \to \left\lbrace x \to +, y \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                  |
-| 2         | mbt_1  | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace x \to +, \text{result} \to \bot \right\rbrace, c_2 \to \left\lbrace x \to Z, \text{result} \to \bot \right\rbrace$ | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace x \to +, \text{result} \to \bot \right\rbrace, c_2 \to \left\lbrace x \to Z, \text{result} \to \bot \right\rbrace$ |
-| 2         | mbt_2  | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace x \to +, \text{result} \to \bot \right\rbrace, c_2 \to \left\lbrace x \to Z, \text{result} \to \bot \right\rbrace$ | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace x \to +, \text{result} \to + \right\rbrace, c_2 \to \left\lbrace x \to Z, \text{result} \to Z \right\rbrace$       |
-| 2         | mbt_3  | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace x \to +, \text{result} \to \bot \right\rbrace, c_2 \to \left\lbrace x \to Z, \text{result} \to Z \right\rbrace$    | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace x \to +, \text{result} \to \bot \right\rbrace, c_2 \to \left\lbrace x \to Z, \text{result} \to Z \right\rbrace$    |
-| 2         | mbt_4  | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace x \to +, \text{result} \to \bot \right\rbrace, c_2 \to \left\lbrace x \to Z, \text{result} \to Z \right\rbrace$    | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace x \to +, \text{result} \to \bot \right\rbrace, c_2 \to \left\lbrace x \to Z, \text{result} \to Z \right\rbrace$    |
-| 2         | m5     | $\epsilon \to \left\lbrace x \to +, y \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                  | $\epsilon \to \left\lbrace x \to +, y \to + \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                     |
-| 2         | m6     | $\epsilon \to \left\lbrace x \to +, y \to + \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                     | $\epsilon \to \left\lbrace x \to Z, y \to + \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                     |
-| 2         | m7     | $\epsilon \to \left\lbrace x \to Z, y \to + \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                     | $\epsilon \to \left\lbrace x \to Z, y \to + \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                     |
-| 2         | m8     | $\epsilon \to \left\lbrace x \to Z, y \to + \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                     | $\epsilon \to \left\lbrace x \to Z, y \to Z \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                     |
-| 2         | m9     | $\epsilon \to \left\lbrace x \to Z, y \to Z \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                     | $\epsilon \to \left\lbrace x \to Z, y \to Z \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                     |
-| 2         | m10    | $\epsilon \to \left\lbrace x \to Z, y \to Z \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$                                     | -                                                                                                                       |
+- $L(a) = \left\lbrace A@1\right\rbrace$
+- $L(b) = \left\lbrace B@2\right\rbrace$
+- $L(c) = \left\lbrace B@2, A@1\right\rbrace$
+- $E(A@1, f) = \left\lbrace B@2, A@1\right\rbrace$
+- $E(B@2, f) = \left\lbrace A@1\right\rbrace$.
 
+Que queda igual que en la version original del programa.  
 
-Con contextos funcionales: 
+Este experimento puede afirmar que el analisis de Andersen sobreaproxima versus el analis point-to flow-sensitive, porque en el algoritmo de Andersen estamos sobreaproximando $L(c)$. 
 
-| Nodo n | IN[n]                                                                                                                                                                                                                                                                     | OUT[n]                                                                                                                                                                                                                                                                    |
-|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| m1     | -                                                                                                                                                                                                                                                                         | $\left\lbrace x \to \bot, y \to \bot \right\rbrace \to \left\lbrace x \to \bot, y \to \bot \right\rbrace, \ldots \to \text{unreach}$                                                                                                                                    |
-| m2     | $\left\lbrace x \to \bot, y \to \bot \right\rbrace \to \left\lbrace x \to \bot, y \to \bot \right\rbrace, \ldots \to \text{unreach}$                                                                                                                                    | $\left\lbrace x \to \bot, y \to \bot \right\rbrace \to \left\lbrace x \to \bot, y \to \bot \right\rbrace, \ldots \to \text{unreach}$                                                                                                                                    |
-| m3     | $\left\lbrace x \to \bot, y \to \bot \right\rbrace \to \left\lbrace x \to \bot, y \to \bot \right\rbrace, \ldots \to \text{unreach}$                                                                                                                                    | $\left\lbrace x \to \bot, y \to \bot \right\rbrace \to \left\lbrace x \to +, y \to \bot \right\rbrace, \ldots \to \text{unreach}$                                                                                                                                       |
-| m4     | $\left\lbrace x \to \bot, y \to \bot \right\rbrace \to \left\lbrace x \to +, y \to \bot \right\rbrace, \ldots \to \text{unreach}$                                                                                                                                       | $\left\lbrace x \to \bot, y \to \bot \right\rbrace \to \left\lbrace x \to +, y \to \bot \right\rbrace, \ldots \to \text{unreach}$                                                                                                                                       |
-| mbt_11 | $\left\lbrace x \to +, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to +, \text{res} \to \bot \right\rbrace, \ldots \to \text{unreach}$                                                                                                                        | $\left\lbrace x \to +, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to +, \text{res} \to \bot \right\rbrace, \ldots \to \text{unreach}$                                                                                                                        |
-| mbt_12 | $\left\lbrace x \to +, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to +, \text{res} \to \bot \right\rbrace, \ldots \to \text{unreach}$                                                                                                                        | $\left\lbrace x \to +, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to +, \text{res} \to + \right\rbrace, \ldots \to \text{unreach}$                                                                                                                           |
-| mbt_13 | $\left\lbrace x \to +, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to +, \text{res} \to + \right\rbrace, \ldots \to \text{unreach}$                                                                                                                           | $\left\lbrace x \to +, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to +, \text{res} \to + \right\rbrace, \ldots \to \text{unreach}$                                                                                                                           |
-| mbt_14 | $\left\lbrace x \to +, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to +, \text{res} \to + \right\rbrace, \ldots \to \text{unreach}$                                                                                                                           | $\left\lbrace x \to +, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to +, \text{res} \to + \right\rbrace, \ldots \to \text{unreach}$                                                                                                                           |
-| m5     | $\left\lbrace x \to \bot, y \to \bot \right\rbrace \to \left\lbrace x \to +, y \to \bot \right\rbrace, \ldots \to \text{unreach}$                                                                                                                                       | $\left\lbrace x \to \bot, y \to \bot \right\rbrace \to \left\lbrace x \to +, y \to + \right\rbrace, \ldots \to \text{unreach}$                                                                                                                                          |
-| m6     | $\left\lbrace x \to \bot, y \to \bot \right\rbrace \to \left\lbrace x \to +, y \to + \right\rbrace, \ldots \to \text{unreach}$                                                                                                                                          | $\left\lbrace x \to \bot, y \to \bot \right\rbrace \to \left\lbrace x \to Z, y \to + \right\rbrace, \ldots \to \text{unreach}$                                                                                                                                          |
-| m7     | $\left\lbrace x \to \bot, y \to \bot \right\rbrace \to \left\lbrace x \to Z, y \to + \right\rbrace, \ldots \to \text{unreach}$                                                                                                                                          | $\left\lbrace x \to \bot, y \to \bot \right\rbrace \to \left\lbrace x \to Z, y \to + \right\rbrace, \ldots \to \text{unreach}$                                                                                                                                          |
-| mbt_21 | $\left\lbrace x \to +, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to +, \text{res} \to \bot \right\rbrace, \left\lbrace x \to Z, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to Z, \text{res} \to \bot \right\rbrace, \ldots \to \text{unreach}$ | $\left\lbrace x \to +, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to +, \text{res} \to \bot \right\rbrace, \left\lbrace x \to Z, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to Z, \text{res} \to \bot \right\rbrace, \ldots \to \text{unreach}$ |
-| mbt_22 | $\left\lbrace x \to +, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to +, \text{res} \to \bot \right\rbrace, \left\lbrace x \to Z, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to Z, \text{res} \to \bot \right\rbrace, \ldots \to \text{unreach}$ | $\left\lbrace x \to +, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to +, \text{res} \to + \right\rbrace, \left\lbrace x \to Z, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to Z, \text{res} \to Z \right\rbrace, \ldots \to \text{unreach}$       |
-| mbt_23 | $\left\lbrace x \to +, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to +, \text{res} \to + \right\rbrace, \left\lbrace x \to Z, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to Z, \text{res} \to Z \right\rbrace, \ldots \to \text{unreach}$       | $\left\lbrace x \to +, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to +, \text{res} \to + \right\rbrace, \left\lbrace x \to Z, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to Z, \text{res} \to Z \right\rbrace, \ldots \to \text{unreach}$       |
-| mbt_24 | $\left\lbrace x \to +, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to +, \text{res} \to + \right\rbrace, \left\lbrace x \to Z, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to Z, \text{res} \to Z \right\rbrace, \ldots \to \text{unreach}$       | $\left\lbrace x \to +, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to +, \text{res} \to + \right\rbrace, \left\lbrace x \to Z, \text{res} \to \bot \right\rbrace \to \left\lbrace x \to Z, \text{res} \to Z \right\rbrace, \ldots \to \text{unreach}$       |
-| m8     | $\left\lbrace x \to \bot, y \to \bot \right\rbrace \to \left\lbrace x \to Z, y \to + \right\rbrace, \ldots \to \text{unreach}$                                                                                                                                          | $\left\lbrace x \to \bot, y \to \bot \right\rbrace \to \left\lbrace x \to Z, y \to Z \right\rbrace, \ldots \to \text{unreach}$                                                                                                                                          |
-| m9     | $\left\lbrace x \to \bot, y \to \bot \right\rbrace \to \left\lbrace x \to Z, y \to Z \right\rbrace, \ldots \to \text{unreach}$                                                                                                                                          | $\left\lbrace x \to \bot, y \to \bot \right\rbrace \to \left\lbrace x \to Z, y \to Z \right\rbrace, \ldots \to \text{unreach}$                                                                                                                                          |
-| m10    | $\left\lbrace x \to \bot, y \to \bot \right\rbrace \to \left\lbrace x \to Z, y \to Z \right\rbrace, \ldots \to \text{unreach}$                                                                                                                                          | -                                                                                                                                                                                                                                                                         |
+Usando el algoritmo de Steensgard en el programa original las restricciones van a ser: 
 
-    
+1. $\left\lbrace A@1\right\rbrace = L(a)$
+2. $\left\lbrace B@2\right\rbrace = L(b)$
+3. $L(b) = \cap \left\lbrace E(k,f) | k \in L(a)\right\rbrace$
+4. $L(a) = L(c)$
+5. $L(a) = \cap \left\lbrace E(k,f) | k \in L(c)\right\rbrace$
+6. $L(b) = L(c)$
+
+Las restricciones actualizadas: 
+1. $\left\lbrace A@1B@2\right\rbrace = L(a)$
+2. $\left\lbrace A@1B@2\right\rbrace = L(b)$
+3. $L(b) = \cap \left\lbrace E(k,f) | k \in L(a)\right\rbrace$
+4. $L(a) = L(c)$
+5. $L(a) = \cap \left\lbrace E(k,f) | k \in L(c)\right\rbrace$
+6. $L(b) = L(c)$
+
+El analisis va a ser: 
+
+- $L(a) = \left\lbrace A@1B@2\right\rbrace$
+- $L(b) = \left\lbrace A@1B@2\right\rbrace$
+- $L(c) = \left\lbrace A@1B@2\right\rbrace$
+- $E(A@1B@2, f) = \left\lbrace A@1B@2\right\rbrace$
+
+Y el PTG final va a ser: 
+
+<img src="images/p8e1e.png" alt="ptg">
+
 # Ejercicio 2 
-Modificar el codigo haria en el punto D que si solo clonamos la funcion `multByTwo`, al llegar a `multByTwo_2` la primera vez pasando por `multByTwo` llamado por el nodo `m4` se haria un supremo entre $+$ y $\bot$ que da $+$ asi que no hay problema, pero en el segundo llamado desde el nodo `m7` se haria un supremo entre $Z$ y $+$ que da $\top$, por lo que como resultado final $y \to top$. Seria el mismo caso que sin hacer cloning. 
+El PTG al final del programa utilizando un análisis points-to flow-sensitive sin contexto es:  
 
-Modificarlo en el punto E haria que como la cadena de llamadas es de tamaño 1, al llegar al entry de `multByTwo_2` haya que tambien tomar supremo entre el out de los nodos llamadores, cuando pasamos en la iteracion 1 habria que tomar el supremo entre $+$ y $\text{unreach}$ que es $+$, pero en el segundo llamado habria que tomar el supremo de $+$ y $Z$, que es $\top$. 
+<img src="images/p8e2a.png" alt="ptg">
 
-Con contextos funcionales como tenemos "infinitos contextos", en ningun momento hay que tomar supremo y perder presicion. 
+Preguntar si el que es $K=1$ no es igual al anterior. 
 
-# Ejercicio 3 
-<img src="images/p7e3.png" alt="cfg">
+Usando cadenas de contexto con $K = 2$: 
 
-Asumiendo que `print` no modifica los valores de los parametros y que `input` devuelve $\top$, el zero análisis interprocedural usando el dominio del signo sin contextos va a ser: 
+<img src="images/p8e2c.png" alt="ptg">
 
-| Iteracion | Nodo n | IN[n]                        | OUT[n]                       |
-|-----------|--------|------------------------------|------------------------------|
-| 1         | m1     | -                            | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$ |
-| 1         | m2     | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$ | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$ |
-| 1         | m3     | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$ | $\left\lbrace x \to \bot, y \to \top \right\rbrace$ |
-| 1         | m4     | $\left\lbrace x \to \bot, y \to \top \right\rbrace$ | $\left\lbrace x \to Z, y \to \top \right\rbrace$    |
-| 1         | m5     | $\left\lbrace x \to Z, y \to \top \right\rbrace$    | $\left\lbrace x \to Z, y \to \top \right\rbrace$    |
-| 1         | m6     | $\left\lbrace x \to Z, y \to \top \right\rbrace$    | $\left\lbrace x \to Z, y \to \top \right\rbrace$    |
-| 1         | i1     | $\left\lbrace a \to Z \right\rbrace$                | $\left\lbrace a \to Z \right\rbrace$                |
-| 1         | i2     | $\left\lbrace a \to Z \right\rbrace$                | $\left\lbrace a \to Z \right\rbrace$                |
-| 1         | i3     | $\left\lbrace a \to Z \right\rbrace$                | $\left\lbrace a \to Z \right\rbrace$                |
-| 1         | m7     | $\left\lbrace x \to Z, y \to \top \right\rbrace$    | $\left\lbrace x \to +, y \to \top \right\rbrace$    |
-| 1         | m8     | $\left\lbrace x \to +, y \to \top \right\rbrace$    | $\left\lbrace x \to +, y \to \top \right\rbrace$    |
-| 1         | m9     | $\left\lbrace x \to Z, y \to \top \right\rbrace$    | $\left\lbrace x \to Z, y \to \top \right\rbrace$    |
-| 1         | m10    | $\left\lbrace x \to Z, y \to \top \right\rbrace$    | -                            |
-| 2         | m1     | -                            | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$ |
-| 2         | m2     | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$ | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$ |
-| 2         | m3     | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$ | $\left\lbrace x \to \bot, y \to \top \right\rbrace$ |
-| 2         | m4     | $\left\lbrace x \to \bot, y \to \top \right\rbrace$ | $\left\lbrace x \to Z, y \to \top \right\rbrace$    |
-| 2         | m5     | $\left\lbrace x \to \top, y \to \top \right\rbrace$ | $\left\lbrace x \to \top, y \to \top \right\rbrace$ |
-| 2         | m6     | $\left\lbrace x \to \top, y \to \top \right\rbrace$ | $\left\lbrace x \to \top, y \to \top \right\rbrace$ |
-| 2         | i1     | $\left\lbrace a \to \top \right\rbrace$             | $\left\lbrace a \to \top \right\rbrace$             |
-| 2         | i2     | $\left\lbrace a \to \top \right\rbrace$             | $\left\lbrace a \to \top \right\rbrace$             |
-| 2         | i3     | $\left\lbrace a \to \top \right\rbrace$             | $\left\lbrace a \to \top \right\rbrace$             |
-| 2         | m7     | $\left\lbrace x \to \top, y \to \top \right\rbrace$ | $\left\lbrace x \to \top, y \to \top \right\rbrace$ |
-| 2         | m8     | $\left\lbrace x \to \top, y \to \top \right\rbrace$ | $\left\lbrace x \to \top, y \to \top \right\rbrace$ |
-| 2         | m9     | $\left\lbrace x \to \top, y \to \top \right\rbrace$ | $\left\lbrace x \to \top, y \to \top \right\rbrace$ |
-| 2         | m10    | $\left\lbrace x \to \top, y \to \top \right\rbrace$ | -                            |
+# Ejercicio 3: 
 
-Entonces la tabla final va a ser:
+Usando el algoritmo de Andersen sin contextos: 
+Las restricciones van a ser: 
+1. $\left\lbrace H1@2\right\rbrace \subseteq L(x)$
+2. $\left\lbrace H2@3\right\rbrace \subseteq L(z)$
+3. $L(x) \subseteq L(y)$
+4. $L(x) \subseteq L(w)$
+5. $L(z) \subseteq L(w)$
 
-| Nodo n | IN[n]                        | OUT[n]                       |
-|--------|------------------------------|------------------------------|
-| m1     | -                            | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$ |
-| m2     | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$ | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$ |
-| m3     | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$ | $\left\lbrace x \to \bot, y \to \top \right\rbrace$ |
-| m4     | $\left\lbrace x \to \bot, y \to \top \right\rbrace$ | $\left\lbrace x \to Z, y \to \top \right\rbrace$    |
-| m5     | $\left\lbrace x \to \top, y \to \top \right\rbrace$ | $\left\lbrace x \to \top, y \to \top \right\rbrace$ |
-| m6     | $\left\lbrace x \to \top, y \to \top \right\rbrace$ | $\left\lbrace x \to \top, y \to \top \right\rbrace$ |
-| i1     | $\left\lbrace a \to \top \right\rbrace$             | $\left\lbrace a \to \top \right\rbrace$             |
-| i2     | $\left\lbrace a \to \top \right\rbrace$             | $\left\lbrace a \to \top \right\rbrace$             |
-| i3     | $\left\lbrace a \to \top \right\rbrace$             | $\left\lbrace a \to \top \right\rbrace$             |
-| m7     | $\left\lbrace x \to \top, y \to \top \right\rbrace$ | $\left\lbrace x \to \top, y \to \top \right\rbrace$ |
-| m8     | $\left\lbrace x \to \top, y \to \top \right\rbrace$ | $\left\lbrace x \to \top, y \to \top \right\rbrace$ |
-| m9     | $\left\lbrace x \to \top, y \to \top \right\rbrace$ | $\left\lbrace x \to \top, y \to \top \right\rbrace$ |
-| m10    | $\left\lbrace x \to \top, y \to \top \right\rbrace$ | -                            |
+Por lo tanto va a quedar: 
+- $L(x) = \left\lbrace H1@2\right\rbrace$
+- $L(z) = \left\lbrace H2@3\right\rbrace$
+- $L(y) = \left\lbrace H1@2\right\rbrace$
+- $L(w) = \left\lbrace H1@2, H2@3\right\rbrace$
 
+Por lo que el PTG final va a ser: 
+<img src="images/p8e3a.png" alt="ptg">
 
-Con cloning, nodos llamadores y contextos funcionales la tabla se veria igual paso a paso, la diferencia si es con contextos es que tendriamos antes apuntando los contextos a los mappings de variables a estados abstractos. 
+Si hacemos cloning, las restricciones van a ser: 
+1. $\left\lbrace H1@2\right\rbrace \subseteq L(x)$
+2. $\left\lbrace H2@3\right\rbrace \subseteq L(z)$
+4. $L(x) \subseteq L(y)$
+5. $L(z) \subseteq L(w)$
+
+Por lo tanto va a quedar: 
+- $L(x) = \left\lbrace H1@2\right\rbrace$
+- $L(z) = \left\lbrace H2@3\right\rbrace$
+- $L(y) = \left\lbrace H1@2\right\rbrace$
+- $L(w) = \left\lbrace H2@3\right\rbrace$
+
+Por lo tanto el PTG va a tener la forma: 
+<img src="images/p8e3bc.png" alt="ptg">
+
+Lo mismo pasa usando contextos. 
 
 # Ejercicio 4 
-<img src="images/p7e4.png" alt="cfg">
+Usando el algoritmo de Andersen sin contexto las restricciones van a ser: 
 
-| Iteracion | Nodo n | IN[n]                      | OUT[n]                     |
-|-----------|--------|----------------------------|----------------------------|
-| 1         | m1     | -                          | $\left\lbrace a \to \bot, b \to \bot \right\rbrace$ |
-| 1         | m2     | $\left\lbrace a \to \bot, b \to \bot \right\rbrace$ | $\left\lbrace a \to \top, b \to \top \right\rbrace$ |
-| 1         | m3     | $\left\lbrace a \to \top, b \to \top \right\rbrace$ | $\left\lbrace a \to I, b \to \top \right\rbrace$    |
-| 1         | m4     | $\left\lbrace a \to I, b \to \top \right\rbrace$    | $\left\lbrace a \to I, b \to \top \right\rbrace$    |
-| 1         | g1     | $\left\lbrace n \to I \right\rbrace$                | $\left\lbrace n \to I \right\rbrace$                |
-| 1         | g2     | $\left\lbrace n \to I \right\rbrace$                | $\left\lbrace n \to I \right\rbrace$                |
-| 1         | m5     | $\left\lbrace a \to I, b \to \top \right\rbrace$    | $\left\lbrace a \to I, b \to I \right\rbrace$       |
-| 1         | m6     | $\left\lbrace a \to I, b \to I \right\rbrace$       | $\left\lbrace a \to P, b \to I \right\rbrace$       |
-| 1         | m7     | $\left\lbrace a \to P, b \to I \right\rbrace$       | $\left\lbrace a \to P, b \to I \right\rbrace$       |
-| 1         | g1     | $\left\lbrace n \to \top \right\rbrace$             | $\left\lbrace n \to \top \right\rbrace$             |
-| 1         | g2     | $\left\lbrace n \to \top \right\rbrace$             | $\left\lbrace n \to \top \right\rbrace$             |
-| 1         | m8     | $\left\lbrace a \to P, b \to I \right\rbrace$       | $\left\lbrace a \to P, b \to \top \right\rbrace$    |
-| 1         | m9     | $\left\lbrace a \to P, b \to \top \right\rbrace$    | $\left\lbrace a \to P, b \to \top \right\rbrace$    |
-| 1         | m10    | $\left\lbrace a \to P, b \to \top \right\rbrace$    | -                          |
-| 2         | m1     | -                          | $\left\lbrace a \to \bot, b \to \bot \right\rbrace$ |
-| 2         | m2     | $\left\lbrace a \to \bot, b \to \bot \right\rbrace$ | $\left\lbrace a \to \top, b \to \top \right\rbrace$ |
-| 2         | m3     | $\left\lbrace a \to \top, b \to \top \right\rbrace$ | $\left\lbrace a \to I, b \to \top \right\rbrace$    |
-| 2         | m4     | $\left\lbrace a \to I, b \to \top \right\rbrace$    | $\left\lbrace a \to I, b \to \top \right\rbrace$    |
-| 2         | g1     | $\left\lbrace n \to \top \right\rbrace$             | $\left\lbrace n \to \top \right\rbrace$             |
-| 2         | g2     | $\left\lbrace n \to \top \right\rbrace$             | $\left\lbrace n \to \top \right\rbrace$             |
-| 2         | m5     | $\left\lbrace a \to I, b \to \top \right\rbrace$    | $\left\lbrace a \to I, b \to \top \right\rbrace$    |
-| 2         | m6     | $\left\lbrace a \to I, b \to \top \right\rbrace$    | $\left\lbrace a \to P, b \to \top \right\rbrace$    |
-| 2         | m7     | $\left\lbrace a \to P, b \to \top \right\rbrace$    | $\left\lbrace a \to P, b \to \top \right\rbrace$    |
-| 2         | g1     | $\left\lbrace n \to \top \right\rbrace$             | $\left\lbrace n \to \top \right\rbrace$             |
-| 2         | g2     | $\left\lbrace n \to \top \right\rbrace$             | $\left\lbrace n \to \top \right\rbrace$             |
-| 2         | m8     | $\left\lbrace a \to P, b \to I \right\rbrace$       | $\left\lbrace a \to P, b \to \top \right\rbrace$    |
-| 2         | m9     | $\left\lbrace a \to P, b \to \top \right\rbrace$    | $\left\lbrace a \to P, b \to \top \right\rbrace$    |
-| 2         | m10    | $\left\lbrace a \to P, b \to \top \right\rbrace$    | -                          |
+1. $\left\lbrace H1@2\right\rbrace \subseteq L(x)$
+2. $\left\lbrace H2@3\right\rbrace \subseteq L(z)$
 
-Entonces la tabla final queda: 
-
-| Nodo n | IN[n]                      | OUT[n]                     |
-|--------|----------------------------|----------------------------|
-| m1     | -                          | $\left\lbrace a \to \bot, b \to \bot \right\rbrace$ |
-| m2     | $\left\lbrace a \to \bot, b \to \bot \right\rbrace$ | $\left\lbrace a \to \top, b \to \top \right\rbrace$ |
-| m3     | $\left\lbrace a \to \top, b \to \top \right\rbrace$ | $\left\lbrace a \to I, b \to \top \right\rbrace$    |
-| m4     | $\left\lbrace a \to I, b \to \top \right\rbrace$    | $\left\lbrace a \to I, b \to \top \right\rbrace$    |
-| g1     | $\left\lbrace n \to \top \right\rbrace$             | $\left\lbrace n \to \top \right\rbrace$             |
-| g2     | $\left\lbrace n \to \top \right\rbrace$             | $\left\lbrace n \to \top \right\rbrace$             |
-| m5     | $\left\lbrace a \to I, b \to \top \right\rbrace$    | $\left\lbrace a \to I, b \to \top \right\rbrace$    |
-| m6     | $\left\lbrace a \to I, b \to \top \right\rbrace$    | $\left\lbrace a \to P, b \to \top \right\rbrace$    |
-| m7     | $\left\lbrace a \to P, b \to \top \right\rbrace$    | $\left\lbrace a \to P, b \to \top \right\rbrace$    |
-| g1     | $\left\lbrace n \to \top \right\rbrace$             | $\left\lbrace n \to \top \right\rbrace$             |
-| g2     | $\left\lbrace n \to \top \right\rbrace$             | $\left\lbrace n \to \top \right\rbrace$             |
-| m8     | $\left\lbrace a \to P, b \to I \right\rbrace$       | $\left\lbrace a \to P, b \to \top \right\rbrace$    |
-| m9     | $\left\lbrace a \to P, b \to \top \right\rbrace$    | $\left\lbrace a \to P, b \to \top \right\rbrace$    |
-| m10    | $\left\lbrace a \to P, b \to \top \right\rbrace$    | -                          |
-
-
-Usando cadenas de llamadas con $k = 1$: 
-
-| Iteracion | Nodo n | IN[n]                                                                                     | OUT[n]                                                                                    |
-|-----------|--------|-------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
-| 1         | m1     | -                                                                                         | $\epsilon \to \left\lbrace a \to \bot, b \to \bot \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$ |
-| 1         | m2     | $\epsilon \to \left\lbrace a \to \bot, b \to \bot \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$ | $\epsilon \to \left\lbrace a \to \top, b \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$ |
-| 1         | m3     | $\epsilon \to \left\lbrace a \to \top, b \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$ | $\epsilon \to \left\lbrace a \to I, b \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$    |
-| 1         | m4     | $\epsilon \to \left\lbrace a \to I, b \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$    | $\epsilon \to \left\lbrace a \to I, b \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$    |
-| 1         | g1     | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace n \to I \right\rbrace, c_2 \to \text{unreach}$                | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace n \to I \right\rbrace, c_2 \to \text{unreach}$                |
-| 1         | g2     | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace n \to I \right\rbrace, c_2 \to \text{unreach}$                | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace n \to I \right\rbrace, c_2 \to \text{unreach}$                |
-| 1         | m5     | $\epsilon \to \left\lbrace a \to I, b \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$    | $\epsilon \to \left\lbrace a \to I, b \to I \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       |
-| 1         | m6     | $\epsilon \to \left\lbrace a \to I, b \to I \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       | $\epsilon \to \left\lbrace a \to P, b \to I \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       |
-| 1         | m7     | $\epsilon \to \left\lbrace a \to P, b \to I \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       | $\epsilon \to \left\lbrace a \to P, b \to I \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       |
-| 1         | m8     | $\epsilon \to \left\lbrace a \to P, b \to I \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       | $\epsilon \to \text{unreach}, c_1 \to \text{unreach}, c_2 \to \text{unreach}$             |
-| 1         | m9     | $\epsilon \to \text{unreach}, c_1 \to \text{unreach}, c_2 \to \text{unreach}$             | $\epsilon \to \text{unreach}, c_1 \to \text{unreach}, c_2 \to \text{unreach}$             |
-| 1         | m10    | $\epsilon \to \text{unreach}, c_1 \to \text{unreach}, c_2 \to \text{unreach}$             | -                                                                                         |
-| 2         | m1     | -                                                                                         | $\epsilon \to \left\lbrace a \to \bot, b \to \bot \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$ |
-| 2         | m2     | $\epsilon \to \left\lbrace a \to \bot, b \to \bot \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$ | $\epsilon \to \left\lbrace a \to \top, b \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$ |
-| 2         | m3     | $\epsilon \to \left\lbrace a \to \top, b \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$ | $\epsilon \to \left\lbrace a \to I, b \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$    |
-| 2         | m4     | $\epsilon \to \left\lbrace a \to I, b \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$    | $\epsilon \to \left\lbrace a \to I, b \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$    |
-| 2         | g1     | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace n \to I \right\rbrace, c_2 \to \left\lbrace n \to P \right\rbrace$                   | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace n \to I \right\rbrace, c_2 \to \left\lbrace n \to P \right\rbrace$                   |
-| 2         | g2     | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace n \to I \right\rbrace, c_2 \to \left\lbrace n \to P \right\rbrace$                   | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace n \to I \right\rbrace, c_2 \to \left\lbrace n \to P \right\rbrace$                   |
-| 2         | m5     | $\epsilon \to \left\lbrace a \to I, b \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$    | $\epsilon \to \left\lbrace a \to I, b \to I \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       |
-| 2         | m6     | $\epsilon \to \left\lbrace a \to I, b \to I \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       | $\epsilon \to \left\lbrace a \to P, b \to I \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       |
-| 2         | m7     | $\epsilon \to \left\lbrace a \to P, b \to I \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       | $\epsilon \to \left\lbrace a \to P, b \to I \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       |
-| 2         | m8     | $\epsilon \to \left\lbrace a \to P, b \to I \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       | $\epsilon \to \left\lbrace a \to P, b \to P \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       |
-| 2         | m9     | $\epsilon \to \left\lbrace a \to P, b \to P \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       | $\epsilon \to \left\lbrace a \to P, b \to P \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       |
-| 2         | m10    | $\epsilon \to \left\lbrace a \to P, b \to P \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       | -                                                                                         |
-
-Entonces la tabla final va a ser: 
-
-| Nodo n | IN[n]                                                                                     | OUT[n]                                                                                    |
-|--------|-------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
-| m1     | -                                                                                         | $\epsilon \to \left\lbrace a \to \bot, b \to \bot \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$ |
-| m2     | $\epsilon \to \left\lbrace a \to \bot, b \to \bot \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$ | $\epsilon \to \left\lbrace a \to \top, b \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$ |
-| m3     | $\epsilon \to \left\lbrace a \to \top, b \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$ | $\epsilon \to \left\lbrace a \to I, b \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$    |
-| m4     | $\epsilon \to \left\lbrace a \to I, b \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$    | $\epsilon \to \left\lbrace a \to I, b \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$    |
-| g1     | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace n \to I \right\rbrace, c_2 \to \left\lbrace n \to P \right\rbrace$                   | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace n \to I \right\rbrace, c_2 \to \left\lbrace n \to P \right\rbrace$                   |
-| g2     | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace n \to I \right\rbrace, c_2 \to \left\lbrace n \to P \right\rbrace$                   | $\epsilon \to \text{unreach}, c_1 \to \left\lbrace n \to I \right\rbrace, c_2 \to \left\lbrace n \to P \right\rbrace$                   |
-| m5     | $\epsilon \to \left\lbrace a \to I, b \to \top \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$    | $\epsilon \to \left\lbrace a \to I, b \to I \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       |
-| m6     | $\epsilon \to \left\lbrace a \to I, b \to I \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       | $\epsilon \to \left\lbrace a \to P, b \to I \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       |
-| m7     | $\epsilon \to \left\lbrace a \to P, b \to I \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       | $\epsilon \to \left\lbrace a \to P, b \to I \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       |
-| m8     | $\epsilon \to \left\lbrace a \to P, b \to I \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       | $\epsilon \to \left\lbrace a \to P, b \to P \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       |
-| m9     | $\epsilon \to \left\lbrace a \to P, b \to P \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       | $\epsilon \to \left\lbrace a \to P, b \to P \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       |
-| m10    | $\epsilon \to \left\lbrace a \to P, b \to P \right\rbrace, c_1 \to \text{unreach}, c_2 \to \text{unreach}$       | -                                                                                         |
-
-Usando contextos funcionales: 
-
-| Nodo n | IN[n]                                                                                 | OUT[n]                                                                                |
-|--------|---------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
-| m1     | -                                                                                     | $\left\lbrace a \to \bot, b \to \bot \right\rbrace \to \left\lbrace a \to \bot, b \to \bot \right\rbrace \ldots \to \text{unreach}$ |
-| m2     | $\left\lbrace a \to \bot, b \to \bot \right\rbrace \to \left\lbrace a \to \bot, b \to \bot \right\rbrace \ldots \to \text{unreach}$ | $\left\lbrace a \to \bot, b \to \bot \right\rbrace \to \left\lbrace a \to \top, b \to \top \right\rbrace \ldots \to \text{unreach}$ |
-| m3     | $\left\lbrace a \to \bot, b \to \bot \right\rbrace \to \left\lbrace a \to \top, b \to \top \right\rbrace \ldots \to \text{unreach}$ | $\left\lbrace a \to \bot, b \to \bot \right\rbrace \to \left\lbrace a \to I, b \to \top \right\rbrace \ldots \to \text{unreach}$    |
-| m4     | $\left\lbrace a \to \bot, b \to \bot \right\rbrace \to \left\lbrace a \to I, b \to \top \right\rbrace \ldots \to \text{unreach}$    | $\left\lbrace a \to \bot, b \to \bot \right\rbrace \to \left\lbrace a \to I, b \to \top \right\rbrace \ldots \to \text{unreach}$    |
-| g1     | $\left\lbrace n \to I \right\rbrace \to \left\lbrace n \to I \right\rbrace \ldots \to \text{unreach}$                               | $\left\lbrace n \to I \right\rbrace \to \left\lbrace n \to I \right\rbrace \ldots \to \text{unreach}$                               |
-| g2     | $\left\lbrace n \to I \right\rbrace \to \left\lbrace n \to I \right\rbrace \ldots \to \text{unreach}$                               | $\left\lbrace n \to I \right\rbrace \to \left\lbrace n \to I \right\rbrace \ldots \to \text{unreach}$                               |
-| m5     | $\left\lbrace a \to \bot, b \to \bot \right\rbrace \to \left\lbrace a \to I, b \to \top \right\rbrace \ldots \to \text{unreach}$    | $\left\lbrace a \to \bot, b \to \bot \right\rbrace \to \left\lbrace a \to I, b \to I \right\rbrace \ldots \to \text{unreach}$       |
-| m6     | $\left\lbrace a \to \bot, b \to \bot \right\rbrace \to \left\lbrace a \to I, b \to I \right\rbrace \ldots \to \text{unreach}$       | $\left\lbrace a \to \bot, b \to \bot \right\rbrace \to \left\lbrace a \to P, b \to I \right\rbrace \ldots \to \text{unreach}$       |
-| m7     | $\left\lbrace a \to \bot, b \to \bot \right\rbrace \to \left\lbrace a \to P, b \to I \right\rbrace \ldots \to \text{unreach}$       | $\left\lbrace a \to \bot, b \to \bot \right\rbrace \to \left\lbrace a \to P, b \to I \right\rbrace \ldots \to \text{unreach}$       |
-| g1     | $\left\lbrace n \to I \right\rbrace \to \left\lbrace n \to I \right\rbrace \left\lbrace n \to P \right\rbrace \to \left\lbrace n \to P \right\rbrace \ldots \to \text{unreach}$   | $\left\lbrace n \to I \right\rbrace \to \left\lbrace n \to I \right\rbrace \left\lbrace n \to P \right\rbrace \to \left\lbrace n \to P \right\rbrace \ldots \to \text{unreach}$   |
-| g2     | $\left\lbrace n \to I \right\rbrace \to \left\lbrace n \to I \right\rbrace \left\lbrace n \to P \right\rbrace \to \left\lbrace n \to P \right\rbrace \ldots \to \text{unreach}$   | $\left\lbrace n \to I \right\rbrace \to \left\lbrace n \to I \right\rbrace \left\lbrace n \to P \right\rbrace \to \left\lbrace n \to P \right\rbrace \ldots \to \text{unreach}$   |
-| m8     | $\left\lbrace a \to \bot, b \to \bot \right\rbrace \to \left\lbrace a \to P, b \to I \right\rbrace \ldots \to \text{unreach}$       | $\left\lbrace a \to \bot, b \to \bot \right\rbrace \to \left\lbrace a \to P, b \to P \right\rbrace \ldots \to \text{unreach}$       |
-| m9     | $\left\lbrace a \to \bot, b \to \bot \right\rbrace \to \left\lbrace a \to P, b \to P \right\rbrace \ldots \to \text{unreach}$       | $\left\lbrace a \to \bot, b \to \bot \right\rbrace \to \left\lbrace a \to P, b \to P \right\rbrace \ldots \to \text{unreach}$       |
-| m10    | $\left\lbrace a \to \bot, b \to \bot \right\rbrace \to \left\lbrace a \to P, b \to P \right\rbrace \ldots \to \text{unreach}$       | -                                                                                     |
+TODO
 
 # Ejercicio 5
-<img src="images/p7e5.png" alt="cfg">
+Las restricciones van a ser: 
+1. $\left\lbrace E1\right\rbrace \subseteq L(e1)$
+2. $\left\lbrace E2\right\rbrace \subseteq L(e2)$
+3. $\left\lbrace E3\right\rbrace \subseteq L(e3)$
+4. $L(e2) \subseteq \cap \left\lbrace E(k, \text{siguiente}) | k \in L(e1)\right\rbrace$
+5. $L(e3) \subseteq \cap \left\lbrace E(k, \text{siguiente}) | k \in L(e2)\right\rbrace$
+6. $L(e1) \subseteq \cap \left\lbrace E(k, \text{siguiente}) | k \in L(e3)\right\rbrace$
+7. $\cup \left\lbrace E(k, \text{siguiente}) | k \in L(e3)\right\rbrace \subseteq L(e3)$
 
-Analisis sin contextos: 
+- $L(e1) = \left\lbrace E1\right\rbrace$
+- $L(e2) = \left\lbrace E2\right\rbrace$
+- $L(e3) = \left\lbrace E3, E1, E2\right\rbrace$
+- $E(E1, \text{siguiente}) = \left\lbrace E2, E1\right\rbrace$
+- $E(E2, \text{siguiente}) = \left\lbrace E3, E1, E2\right\rbrace$
+- $E(E3, \text{siguiente}) = \left\lbrace E1\right\rbrace$
 
-| Iteracion | Nodo n | IN[n]                          | OUT[n]                         |
-|-----------|--------|--------------------------------|--------------------------------|
-| 1         | m1     | -                              | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$   |
-| 1         | m2     | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$   | $\left\lbrace x \to \top, y \to \top \right\rbrace$   |
-| 1         | m3     | $\left\lbrace x \to \top, y \to \top \right\rbrace$   | $\left\lbrace x \to +, y \to \top \right\rbrace$      |
-| 1         | m4     | $\left\lbrace x \to +, y \to \top \right\rbrace$      | $\left\lbrace x \to +, y \to \top \right\rbrace$      |
-| 1         | i1     | $\left\lbrace n \to +, res \to \bot \right\rbrace$    | $\left\lbrace n \to +, res \to \bot \right\rbrace$    |
-| 1         | i2     | $\left\lbrace n \to +, res \to \bot \right\rbrace$    | $\left\lbrace n \to +, res \to + \right\rbrace$       |
-| 1         | i3     | $\left\lbrace n \to +, res \to + \right\rbrace$       | $\left\lbrace n \to +, res \to + \right\rbrace$       |
-| 1         | m5     | $\left\lbrace x \to +, y \to \top \right\rbrace$      | $\left\lbrace x \to +, y \to + \right\rbrace$         |
-| 1         | m6     | $\left\lbrace x \to +, y \to + \right\rbrace$         | $\left\lbrace x \to +, y \to + \right\rbrace$         |
-| 1         | d1     | $\left\lbrace m \to Z, res \to \bot \right\rbrace$    | $\left\lbrace m \to Z, res \to \bot \right\rbrace$    |
-| 1         | d2     | $\left\lbrace m \to Z, res \to \bot \right\rbrace$    | $\left\lbrace m \to Z, res \to Z \right\rbrace$       |
-| 1         | d3     | $\left\lbrace m \to Z, res \to Z \right\rbrace$       | $\left\lbrace m \to Z, res \to Z \right\rbrace$       |
-| 1         | m7     | $\left\lbrace x \to +, y \to + \right\rbrace$         | $\left\lbrace x \to Z, y \to + \right\rbrace$         |
-| 1         | m8     | $\left\lbrace x \to Z, y \to + \right\rbrace$         | $\left\lbrace x \to Z, y \to + \right\rbrace$         |
-| 1         | i1     | $\left\lbrace n \to \top, res \to \bot \right\rbrace$ | $\left\lbrace n \to \top, res \to \bot \right\rbrace$ |
-| 1         | i2     | $\left\lbrace n \to \top, res \to \bot \right\rbrace$ | $\left\lbrace n \to \top, res \to \top \right\rbrace$ |
-| 1         | i3     | $\left\lbrace n \to \top, res \to \top \right\rbrace$ | $\left\lbrace n \to \top, res \to \top \right\rbrace$ |
-| 1         | m9     | $\left\lbrace x \to Z, y \to + \right\rbrace$         | $\left\lbrace x \to Z, y \to \top \right\rbrace$      |
-| 1         | m10    | $\left\lbrace x \to Z, y \to \top \right\rbrace$      | $\left\lbrace x \to Z, y \to \top \right\rbrace$      |
-| 1         | m11    | $\left\lbrace x \to Z, y \to \top \right\rbrace$      | -                              |
-| 2         | m1     | -                              | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$   |
-| 2         | m2     | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$   | $\left\lbrace x \to \top, y \to \top \right\rbrace$   |
-| 2         | m3     | $\left\lbrace x \to \top, y \to \top \right\rbrace$   | $\left\lbrace x \to +, y \to \top \right\rbrace$      |
-| 2         | m4     | $\left\lbrace x \to +, y \to \top \right\rbrace$      | $\left\lbrace x \to +, y \to \top \right\rbrace$      |
-| 2         | i1     | $\left\lbrace n \to \top, res \to \bot \right\rbrace$ | $\left\lbrace n \to \top, res \to \bot \right\rbrace$ |
-| 2         | i2     | $\left\lbrace n \to \top, res \to \bot \right\rbrace$ | $\left\lbrace n \to \top, res \to \top \right\rbrace$ |
-| 2         | i3     | $\left\lbrace n \to \top, res \to \top \right\rbrace$ | $\left\lbrace n \to \top, res \to \top \right\rbrace$ |
-| 2         | m5     | $\left\lbrace x \to +, y \to \top \right\rbrace$      | $\left\lbrace x \to +, y \to \top \right\rbrace$      |
-| 2         | m6     | $\left\lbrace x \to +, y \to \top \right\rbrace$      | $\left\lbrace x \to +, y \to \top \right\rbrace$      |
-| 2         | d1     | $\left\lbrace m \to Z, res \to \bot \right\rbrace$    | $\left\lbrace m \to Z, res \to \bot \right\rbrace$    |
-| 2         | d2     | $\left\lbrace m \to Z, res \to \bot \right\rbrace$    | $\left\lbrace m \to Z, res \to Z \right\rbrace$       |
-| 2         | d3     | $\left\lbrace m \to Z, res \to Z \right\rbrace$       | $\left\lbrace m \to Z, res \to Z \right\rbrace$       |
-| 2         | m7     | $\left\lbrace x \to +, y \to \top \right\rbrace$      | $\left\lbrace x \to Z, y \to \top \right\rbrace$      |
-| 2         | m8     | $\left\lbrace x \to Z, y \to \top \right\rbrace$      | $\left\lbrace x \to Z, y \to \top \right\rbrace$      |
-| 2         | i1     | $\left\lbrace n \to \top, res \to \bot \right\rbrace$ | $\left\lbrace n \to \top, res \to \bot \right\rbrace$ |
-| 2         | i2     | $\left\lbrace n \to \top, res \to \bot \right\rbrace$ | $\left\lbrace n \to \top, res \to \top \right\rbrace$ |
-| 2         | i3     | $\left\lbrace n \to \top, res \to \top \right\rbrace$ | $\left\lbrace n \to \top, res \to \top \right\rbrace$ |
-| 2         | m9     | $\left\lbrace x \to Z, y \to + \right\rbrace$         | $\left\lbrace x \to Z, y \to \top \right\rbrace$      |
-| 2         | m10    | $\left\lbrace x \to Z, y \to \top \right\rbrace$      | $\left\lbrace x \to Z, y \to \top \right\rbrace$      |
-| 2         | m11    | $\left\lbrace x \to Z, y \to \top \right\rbrace$      | -                              |
-
-Entonces la tabla final va a ser: 
-
-| Nodo n | IN[n]                          | OUT[n]                         |
-|--------|--------------------------------|--------------------------------|
-| m1     | -                              | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$   |
-| m2     | $\left\lbrace x \to \bot, y \to \bot \right\rbrace$   | $\left\lbrace x \to \top, y \to \top \right\rbrace$   |
-| m3     | $\left\lbrace x \to \top, y \to \top \right\rbrace$   | $\left\lbrace x \to +, y \to \top \right\rbrace$      |
-| m4     | $\left\lbrace x \to +, y \to \top \right\rbrace$      | $\left\lbrace x \to +, y \to \top \right\rbrace$      |
-| i1     | $\left\lbrace n \to \top, res \to \bot \right\rbrace$ | $\left\lbrace n \to \top, res \to \bot \right\rbrace$ |
-| i2     | $\left\lbrace n \to \top, res \to \bot \right\rbrace$ | $\left\lbrace n \to \top, res \to \top \right\rbrace$ |
-| i3     | $\left\lbrace n \to \top, res \to \top \right\rbrace$ | $\left\lbrace n \to \top, res \to \top \right\rbrace$ |
-| m5     | $\left\lbrace x \to +, y \to \top \right\rbrace$      | $\left\lbrace x \to +, y \to \top \right\rbrace$      |
-| m6     | $\left\lbrace x \to +, y \to \top \right\rbrace$      | $\left\lbrace x \to +, y \to \top \right\rbrace$      |
-| d1     | $\left\lbrace m \to Z, res \to \bot \right\rbrace$    | $\left\lbrace m \to Z, res \to \bot \right\rbrace$    |
-| d2     | $\left\lbrace m \to Z, res \to \bot \right\rbrace$    | $\left\lbrace m \to Z, res \to Z \right\rbrace$       |
-| d3     | $\left\lbrace m \to Z, res \to Z \right\rbrace$       | $\left\lbrace m \to Z, res \to Z \right\rbrace$       |
-| m7     | $\left\lbrace x \to +, y \to \top \right\rbrace$      | $\left\lbrace x \to Z, y \to \top \right\rbrace$      |
-| m8     | $\left\lbrace x \to Z, y \to \top \right\rbrace$      | $\left\lbrace x \to Z, y \to \top \right\rbrace$      |
-| i1     | $\left\lbrace n \to \top, res \to \bot \right\rbrace$ | $\left\lbrace n \to \top, res \to \bot \right\rbrace$ |
-| i2     | $\left\lbrace n \to \top, res \to \bot \right\rbrace$ | $\left\lbrace n \to \top, res \to \top \right\rbrace$ |
-| i3     | $\left\lbrace n \to \top, res \to \top \right\rbrace$ | $\left\lbrace n \to \top, res \to \top \right\rbrace$ |
-| m9     | $\left\lbrace x \to Z, y \to + \right\rbrace$         | $\left\lbrace x \to Z, y \to \top \right\rbrace$      |
-| m10    | $\left\lbrace x \to Z, y \to \top \right\rbrace$      | $\left\lbrace x \to Z, y \to \top \right\rbrace$      |
-| m11    | $\left\lbrace x \to Z, y \to \top \right\rbrace$      | -                              |
-
-Usando cadenas de llamadas con $k=1$: 
-
-| Iteracion | Nodo n | IN[n]                                                                                                                          | OUT[n]                                                                                                                         |
-|-----------|--------|--------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
-| 1         | m1     | -                                                                                                                              | $\epsilon \to \left\lbrace x \to \bot, y \to \bot \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$           |
-| 1         | m2     | $\epsilon \to \left\lbrace x \to \bot, y \to \bot \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$           | $\epsilon \to \left\lbrace x \to \top, y \to \top \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$           |
-| 1         | m3     | $\epsilon \to \left\lbrace x \to \top, y \to \top \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$           | $\epsilon \to \left\lbrace x \to +, y \to \top \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$              |
-| 1         | m4     | $\epsilon \to \left\lbrace x \to +, y \to \top \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$              | $\epsilon \to \left\lbrace x \to +, y \to \top \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$              |
-| 1         | i1     | $\epsilon \to \text{unreach},\ c_1 \to \left\lbrace n \to +, res \to \bot \right\rbrace,\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$            | $\epsilon \to \text{unreach},\ c_1 \to \left\lbrace n \to +, res \to \bot \right\rbrace,\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$            |
-| 1         | i2     | $\epsilon \to \text{unreach},\ c_1 \to \left\lbrace n \to +, res \to \bot \right\rbrace,\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$            | $\epsilon \to \text{unreach},\ c_1 \to \left\lbrace n \to +, res \to + \right\rbrace,\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$               |
-| 1         | i3     | $\epsilon \to \text{unreach},\ c_1 \to \left\lbrace n \to +, res \to + \right\rbrace,\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$               | $\epsilon \to \text{unreach},\ c_1 \to \left\lbrace n \to +, res \to + \right\rbrace,\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$               |
-| 1         | m5     | $\epsilon \to \left\lbrace x \to +, y \to \top \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$              | $\epsilon \to \left\lbrace x \to +, y \to + \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                 |
-| 1         | m6     | $\epsilon \to \left\lbrace x \to +, y \to + \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                 | $\epsilon \to \left\lbrace x \to +, y \to + \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                 |
-| 1         | d1     | $\epsilon \to \text{unreach},\ c_1 \to \text{unreach},\ c_2 \to \left\lbrace m \to Z, res \to \bot \right\rbrace,\ c_3 \to \text{unreach}$            | $\epsilon \to \text{unreach},\ c_1 \to \text{unreach},\ c_2 \to \left\lbrace m \to Z, res \to \bot \right\rbrace,\ c_3 \to \text{unreach}$            |
-| 1         | d2     | $\epsilon \to \text{unreach},\ c_1 \to \text{unreach},\ c_2 \to \left\lbrace m \to Z, res \to \bot \right\rbrace,\ c_3 \to \text{unreach}$            | $\epsilon \to \text{unreach},\ c_1 \to \text{unreach},\ c_2 \to \left\lbrace m \to Z, res \to Z \right\rbrace,\ c_3 \to \text{unreach}$               |
-| 1         | d3     | $\epsilon \to \text{unreach},\ c_1 \to \text{unreach},\ c_2 \to \left\lbrace m \to Z, res \to Z \right\rbrace,\ c_3 \to \text{unreach}$               | $\epsilon \to \text{unreach},\ c_1 \to \text{unreach},\ c_2 \to \left\lbrace m \to Z, res \to Z \right\rbrace,\ c_3 \to \text{unreach}$               |
-| 1         | m7     | $\epsilon \to \left\lbrace x \to +, y \to + \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                 | $\epsilon \to \left\lbrace x \to Z, y \to + \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                 |
-| 1         | m8     | $\epsilon \to \left\lbrace x \to Z, y \to + \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                 | $\epsilon \to \left\lbrace x \to Z, y \to + \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                 |
-| 1         | m9     | $\epsilon \to \left\lbrace x \to Z, y \to + \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                 | $\epsilon \to \text{unreach},\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                       |
-| 1         | m10    | $\epsilon \to \text{unreach},\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                       | $\epsilon \to \text{unreach},\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                       |
-| 1         | m11    | $\epsilon \to \text{unreach},\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                       | -                                                                                                                              |
-| 2         | m1     | -                                                                                                                              | $\epsilon \to \left\lbrace x \to \bot, y \to \bot \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$           |
-| 2         | m2     | $\epsilon \to \left\lbrace x \to \bot, y \to \bot \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$           | $\epsilon \to \left\lbrace x \to \top, y \to \top \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$           |
-| 2         | m3     | $\epsilon \to \left\lbrace x \to \top, y \to \top \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$           | $\epsilon \to \left\lbrace x \to +, y \to \top \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$              |
-| 2         | m4     | $\epsilon \to \left\lbrace x \to +, y \to \top \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$              | $\epsilon \to \left\lbrace x \to +, y \to \top \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$              |
-| 2         | i1     | $\epsilon \to \text{unreach},\ c_1 \to \left\lbrace n \to +, res \to \bot \right\rbrace,\ c_2 \to \left\lbrace n \to Z, res \to \bot \right\rbrace,\ c_3 \to \text{unreach}$ | $\epsilon \to \text{unreach},\ c_1 \to \left\lbrace n \to +, res \to \bot \right\rbrace,\ c_2 \to \left\lbrace n \to Z, res \to \bot \right\rbrace,\ c_3 \to \text{unreach}$ |
-| 2         | i2     | $\epsilon \to \text{unreach},\ c_1 \to \left\lbrace n \to +, res \to \bot \right\rbrace,\ c_2 \to \left\lbrace n \to Z, res \to \bot \right\rbrace,\ c_3 \to \text{unreach}$ | $\epsilon \to \text{unreach},\ c_1 \to \left\lbrace n \to +, res \to + \right\rbrace,\ c_2 \to \left\lbrace n \to Z, res \to + \right\rbrace,\ c_3 \to \text{unreach}$       |
-| 2         | i3     | $\epsilon \to \text{unreach},\ c_1 \to \left\lbrace n \to +, res \to + \right\rbrace,\ c_2 \to \left\lbrace n \to Z, res \to + \right\rbrace,\ c_3 \to \text{unreach}$       | $\epsilon \to \text{unreach},\ c_1 \to \left\lbrace n \to +, res \to + \right\rbrace,\ c_2 \to \left\lbrace n \to Z, res \to + \right\rbrace,\ c_3 \to \text{unreach}$       |
-| 2         | m5     | $\epsilon \to \left\lbrace x \to +, y \to \top \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$              | $\epsilon \to \left\lbrace x \to +, y \to + \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                 |
-| 2         | m6     | $\epsilon \to \left\lbrace x \to +, y \to + \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                 | $\epsilon \to \left\lbrace x \to +, y \to + \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                 |
-| 2         | d1     | $\epsilon \to \text{unreach},\ c_1 \to \text{unreach},\ c_2 \to \left\lbrace m \to Z, res \to \bot \right\rbrace,\ c_3 \to \text{unreach}$            | $\epsilon \to \text{unreach},\ c_1 \to \text{unreach},\ c_2 \to \left\lbrace m \to Z, res \to \bot \right\rbrace,\ c_3 \to \text{unreach}$            |
-| 2         | d2     | $\epsilon \to \text{unreach},\ c_1 \to \text{unreach},\ c_2 \to \left\lbrace m \to Z, res \to \bot \right\rbrace,\ c_3 \to \text{unreach}$            | $\epsilon \to \text{unreach},\ c_1 \to \text{unreach},\ c_2 \to \left\lbrace m \to Z, res \to Z \right\rbrace,\ c_3 \to \text{unreach}$               |
-| 2         | d3     | $\epsilon \to \text{unreach},\ c_1 \to \text{unreach},\ c_2 \to \left\lbrace m \to Z, res \to Z \right\rbrace,\ c_3 \to \text{unreach}$               | $\epsilon \to \text{unreach},\ c_1 \to \text{unreach},\ c_2 \to \left\lbrace m \to Z, res \to Z \right\rbrace,\ c_3 \to \text{unreach}$               |
-| 2         | m7     | $\epsilon \to \left\lbrace x \to +, y \to + \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                 | $\epsilon \to \left\lbrace x \to Z, y \to + \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                 |
-| 2         | m8     | $\epsilon \to \left\lbrace x \to Z, y \to + \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                 | $\epsilon \to \left\lbrace x \to Z, y \to + \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                 |
-| 2         | m9     | $\epsilon \to \left\lbrace x \to Z, y \to + \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                 | $\epsilon \to \left\lbrace x \to Z, y \to + \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                 |
-| 2         | m10    | $\epsilon \to \left\lbrace x \to Z, y \to + \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                 | $\epsilon \to \left\lbrace x \to Z, y \to + \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                 |
-| 2         | m11    | $\epsilon \to \left\lbrace x \to Z, y \to + \right\rbrace,\ c_1 \to \text{unreach},\ c_2 \to \text{unreach},\ c_3 \to \text{unreach}$                 | -                                                                                                                              |
-
+<img src="images/p8e5.png" alt="ptg">
