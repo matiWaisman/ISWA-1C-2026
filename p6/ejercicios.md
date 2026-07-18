@@ -9,17 +9,17 @@ El poset va a ser $\{\mathbb{Z} \cup \{-\infty, \infty\}, \sqsubseteq\}$.
 
 Donde $x \sqsubseteq y$ va a estar definido como:
 
-$x \sqsubseteq y \iff \begin{cases} x = -\infty \\ y = +\infty \\ x, y \in \mathbb{Z} \text{ y } x \leq_{\mathbb{Z}} y \end{cases}$.
+$$x \sqsubseteq y \iff \begin{cases} x = -\infty \\ y = +\infty \\ x, y \in \mathbb{Z} \text{ y } x \leq_{\mathbb{Z}} y \end{cases}$$.
 
 $\bot = -\infty, \top = \infty$.
 
 Podemos definir $\sqcup X$ como: 
 
-$\sqcup X = \begin{cases} +\infty & \text{si } +\infty \in X \\ \max\{ x \in \mathbb{Z} \mid x \in X \} & \text{si } +\infty \notin X \text{ y } X \cap \mathbb{Z} \neq \emptyset \\ -\infty & \text{si } +\infty \notin X \text{ y } X \cap \mathbb{Z} = \emptyset \end{cases}$
+$$\sqcup X = \begin{cases} +\infty & \text{si } +\infty \in X \\ \max\{ x \in \mathbb{Z} \mid x \in X \} & \text{si } +\infty \notin X \text{ y } X \cap \mathbb{Z} \neq \emptyset \\ -\infty & \text{si } +\infty \notin X \text{ y } X \cap \mathbb{Z} = \emptyset \end{cases}$$
 
 Y podemos definir a $\sqcap X$ como: 
 
-$\sqcap X = \begin{cases} -\infty & \text{si } -\infty \in X \\ \min\{ x \in \mathbb{Z} \mid x \in X \} & \text{si } -\infty \notin X \text{ y } X \cap \mathbb{Z} \neq \emptyset \\ +\infty & \text{si } -\infty \notin X \text{ y } X \cap \mathbb{Z} = \emptyset \end{cases}$.
+$$\sqcap X = \begin{cases} -\infty & \text{si } -\infty \in X \\ \min\{ x \in \mathbb{Z} \mid x \in X \} & \text{si } -\infty \notin X \text{ y } X \cap \mathbb{Z} \neq \emptyset \\ +\infty & \text{si } -\infty \notin X \text{ y } X \cap \mathbb{Z} = \emptyset \end{cases}$$.
 
 
 # Ejercicio 2 
@@ -54,7 +54,7 @@ Suponiendo que ahora los elementos de $S$ cumplan $A \sqsubseteq B \sqsubseteq C
 # Ejercicio 4 
 ## Diagrama 1 
 
-$\varphi(\sqcup X) = \begin{cases} + & \text{si } + \in X, \\ 0 & \text{en caso contrario.} \end{cases}$
+$$\varphi(\sqcup X) = \begin{cases} + & \text{si } + \in X, \\ 0 & \text{en caso contrario.} \end{cases}$$
 
 Las cadenas incrementales van a ser: $\{(-), (0), (+), (-,0), (0,+), (-,+), (-,0,+)\}$
 
@@ -70,7 +70,7 @@ Ese minimo punto fijo se puede calcular iterativamente como:
 
 Por lo tanto el lfp es 0. 
 ## Diagrama 2 
-\varphi(\sqcup X) va a ser:
+$\varphi(\sqcup X)$ va a ser:
 
 1. $X = \{-\} \to \sqcup X = - \to \varphi(\sqcup X) = 0$
 2. $X = \{0\} \to \sqcup X = 0 \to \varphi(\sqcup X) = -$
@@ -87,7 +87,7 @@ $\varphi$ no es monotona porque no se cumple que $\forall x, y \in S: x \sqsubse
 El teorema de Kleene no nos sirve para calcular el lfp, pero aun asi $+$ es el lfp porque es el unico punto fijo. 
 
 ## Diagrama 3 
-$\varphi(\sqcup X) = \begin{cases} \top & \text{si } \top \in X \lor + \in X, \\ 0 & \text{en caso contrario.} \end{cases}$
+$$\varphi(\sqcup X) = \begin{cases} \top & \text{si } \top \in X \lor + \in X, \\ 0 & \text{en caso contrario.} \end{cases}$$
 
 $\varphi$ es monotona y su lfp es $0$. 
 
@@ -103,8 +103,7 @@ El teorema del punto fijo no se cumple sin la suposición de que f es monótona,
 ```
 
 Y definimos la funcion no monótona $\varphi$: 
-$
-\varphi : L \to L, \qquad
+$$\varphi : L \to L, \qquad
 \varphi(x) =
 \begin{cases}
 a & \text{si } x = a \\
@@ -112,7 +111,7 @@ b & \text{si } x = \bot \\
 \top & \text{si } x = b \\
 \bot & \text{si } x = \top
 \end{cases}
-$
+$$
 
 La función tiene un punto fijo (y como es unico es el lfp), pero no podemos usar la construcción para calcularlo iterativamente, porque si arrancamos de $\bot$ tenemos un ciclo infinito.  
 
@@ -177,17 +176,17 @@ El estado inicial tiene a todas las variables como $\bot$.
 
 <img src="images/cfg_ej8.png" alt="cfg">
 
-| Nodo n | IN[n]                                                | OUT[n]                                               |
-|--------|------------------------------------------------------|------------------------------------------------------|
-| 1      | -                                                    | {x ->$\bot$, y ->$\bot$, z ->$\bot$, input ->$\top$} |
-| 2      | {x ->$\bot$, y ->$\bot$, z ->$\bot$, input ->$\top$} | {x -> ns, y ->$\bot$, z ->$\bot$, input ->$\top$}    |
-| 3      | {x -> ns, y ->$\bot$, z ->$\bot$, input ->$\top$}    | {x -> s, y ->$\bot$, z ->$\bot$, input ->$\top$}     |
-| 4      | {x -> s, y ->$\bot$, z ->$\bot$, input ->$\top$}     | {x -> s, y ->$\top$, z ->$\bot$, input ->$\top$}     |
-| 5      | {x -> s, y ->$\top$, z ->$\bot$, input ->$\top$}     | {x -> s, y ->$\top$, z ->$\bot$, input ->$\top$}     |
-| 6      | {x -> s, y ->$\top$, z ->$\bot$, input ->$\top$}     | {x -> s, y ->$\top$, z -> s, input ->$\top$}         |
-| 7      | {x -> s, y ->$\top$, z ->$\bot$, input ->$\top$}     | {x -> s, y ->$\top$, z -> ns, input ->$\top$}        |
-| 8      | {x -> s, y ->$\top$, z ->$\top$, input ->$\top$}     | {x -> ns, y ->$\top$, z ->$\top$, input ->$\top$}    |
-| 9      | {x -> ns, y ->$\top$, z ->$\top$, input ->$\top$}    | -                                                    |
+| Nodo n | IN[n]                             | OUT[n]                            |
+|--------|-----------------------------------|-----------------------------------|
+| 1      | -                                 | {x → ⊥, y → ⊥, z → ⊥, input → ⊤}  |
+| 2      | {x → ⊥, y → ⊥, z → ⊥, input → ⊤}  | {x → ns, y → ⊥, z → ⊥, input → ⊤} |
+| 3      | {x → ns, y → ⊥, z → ⊥, input → ⊤} | {x → s, y → ⊥, z → ⊥, input → ⊤}  |
+| 4      | {x → s, y → ⊥, z → ⊥, input → ⊤}  | {x → s, y → ⊤, z → ⊥, input → ⊤}  |
+| 5      | {x → s, y → ⊤, z → ⊥, input → ⊤}  | {x → s, y → ⊤, z → ⊥, input → ⊤}  |
+| 6      | {x → s, y → ⊤, z → ⊥, input → ⊤}  | {x → s, y → ⊤, z → s, input → ⊤}  |
+| 7      | {x → s, y → ⊤, z → ⊥, input → ⊤}  | {x → s, y → ⊤, z → ns, input → ⊤} |
+| 8      | {x → s, y → ⊤, z → ⊤, input → ⊤}  | {x → ns, y → ⊤, z → ⊤, input → ⊤} |
+| 9      | {x → ns, y → ⊤, z → ⊤, input → ⊤} | -                                 |
 
 (Asumo que si $z = x$ es sensible, al hacer `insensible(x)` $z$ sigue siendo sensible)
 
@@ -213,80 +212,79 @@ S & \text{sino}
 \end{cases}
 $$ 
 
-| Iteracion | Nodo n | IN[n]                                   | OUT[n]                                  |
-|-----------|--------|-----------------------------------------|-----------------------------------------|
-| 1         | 1      | -                                       | {}                                      |
-| 1         | 2      | {}                                      | {$(y, c_0)$}                            |
-| 1         | 3      | {$(y, c_0)$}                            | {$(y, c_0), (x, c_0), (x,y)$}           |
-| 1         | 4      | {$(y, c_0), (x, c_0), (x,y)$}           | {$(y, c_0), (x, c_0), (x,y), (z, c_1)$} |
-| 1         | 5      | {$(y, c_0), (x, c_0), (x,y), (z, c_1)$} | {$(y, c_0), (x, c_0), (x,y), (z, c_1)$} |
-| 1         | 6      | {$(y, c_0), (x, c_0), (x,y), (z, c_1)$} | {$(y, c_0), (z, c_1), (x, c_1), (x,z)$} |
-| 1         | 7      | {$(y, c_0), (z, c_1), (x, c_1), (x,z)$} | {$(y, c_0), (z, c_1), (x, c_1), (x,z)$} |
-| 1         | 8      | {$(y, c_0), (z, c_1), (x, c_1), (x,z)$} | {$(y, c_0), (z, c_1), (x, c_0), (x,y)$} |
-| 1         | 9      | {$(y, c_0), (x, c_0), (x,y), (z, c_1)$} | -                                       |
-| 2         | 1      | -                                       | {}                                      |
-| 2         | 2      | {}                                      | {$(y, c_0)$}                            |
-| 2         | 3      | {$(y, c_0)$}                            | {$(y, c_0), (x, c_0), (x,y)$}           |
-| 2         | 4      | {$(y, c_0), (x, c_0), (x,y)$}           | {$(y, c_0), (x, c_0), (x,y), (z, c_1)$} |
-| 2         | 5      | {$(y, c_0), (z, c_1)$}                  | {$(y, c_0), (z, c_1)$}                  |
-| 2         | 6      | {$(y, c_0), (z, c_1)$}                  | {$(y, c_0), (z, c_1), (x, c_1), (x,z)$} |
-| 2         | 7      | {$(y, c_0), (z, c_1), (x, c_1), (x,z)$} | {$(y, c_0), (z, c_1), (x, c_1), (x,z)$} |
-| 2         | 8      | {$(y, c_0), (z, c_1), (x, c_1), (x,z)$} | {$(y, c_0), (z, c_1), (x, c_0), (x,y)$} |
-| 2         | 9      | {$(y, c_0), (z, c_1)$}                  | -                                       |
+| Iteracion | Nodo n | IN[n]                                 | OUT[n]                                |
+|-----------|--------|---------------------------------------|---------------------------------------|
+| 1         | 1      | -                                     | {}                                    |
+| 1         | 2      | {}                                    | {(y, c_0)}                            |
+| 1         | 3      | {(y, c_0)}                            | {(y, c_0), (x, c_0), (x,y)}           |
+| 1         | 4      | {(y, c_0), (x, c_0), (x,y)}           | {(y, c_0), (x, c_0), (x,y), (z, c_1)} |
+| 1         | 5      | {(y, c_0), (x, c_0), (x,y), (z, c_1)} | {(y, c_0), (x, c_0), (x,y), (z, c_1)} |
+| 1         | 6      | {(y, c_0), (x, c_0), (x,y), (z, c_1)} | {(y, c_0), (z, c_1), (x, c_1), (x,z)} |
+| 1         | 7      | {(y, c_0), (z, c_1), (x, c_1), (x,z)} | {(y, c_0), (z, c_1), (x, c_1), (x,z)} |
+| 1         | 8      | {(y, c_0), (z, c_1), (x, c_1), (x,z)} | {(y, c_0), (z, c_1), (x, c_0), (x,y)} |
+| 1         | 9      | {(y, c_0), (x, c_0), (x,y), (z, c_1)} | -                                     |
+| 2         | 1      | -                                     | {}                                    |
+| 2         | 2      | {}                                    | {(y, c_0)}                            |
+| 2         | 3      | {(y, c_0)}                            | {(y, c_0), (x, c_0), (x,y)}           |
+| 2         | 4      | {(y, c_0), (x, c_0), (x,y)}           | {(y, c_0), (x, c_0), (x,y), (z, c_1)} |
+| 2         | 5      | {(y, c_0), (z, c_1)}                  | {(y, c_0), (z, c_1)}                  |
+| 2         | 6      | {(y, c_0), (z, c_1)}                  | {(y, c_0), (z, c_1), (x, c_1), (x,z)} |
+| 2         | 7      | {(y, c_0), (z, c_1), (x, c_1), (x,z)} | {(y, c_0), (z, c_1), (x, c_1), (x,z)} |
+| 2         | 8      | {(y, c_0), (z, c_1), (x, c_1), (x,z)} | {(y, c_0), (z, c_1), (x, c_0), (x,y)} |
+| 2         | 9      | {(y, c_0), (z, c_1)}                  | -                                     |
 
+Entonces la tabla final es:
 
-Entonces la tabla final es: 
-
-| Nodo n | IN[n]                                   | OUT[n]                                  |
-|--------|-----------------------------------------|-----------------------------------------|
-| 1      | -                                       | {}                                      |
-| 2      | {}                                      | {$(y, c_0)$}                            |
-| 3      | {$(y, c_0)$}                            | {$(y, c_0), (x, c_0), (x,y)$}           |
-| 4      | {$(y, c_0), (x, c_0), (x,y)$}           | {$(y, c_0), (x, c_0), (x,y), (z, c_1)$} |
-| 5      | {$(y, c_0), (z, c_1)$}                  | {$(y, c_0), (z, c_1)$}                  |
-| 6      | {$(y, c_0), (z, c_1)$}                  | {$(y, c_0), (z, c_1), (x, c_1), (x,z)$} |
-| 7      | {$(y, c_0), (z, c_1), (x, c_1), (x,z)$} | {$(y, c_0), (z, c_1), (x, c_1), (x,z)$} |
-| 8      | {$(y, c_0), (z, c_1), (x, c_1), (x,z)$} | {$(y, c_0), (z, c_1), (x, c_0), (x,y)$} |
-| 9      | {$(y, c_0), (z, c_1)$}                  | -                                       |
+| Nodo n | IN[n]                                 | OUT[n]                                |
+|--------|---------------------------------------|---------------------------------------|
+| 1      | -                                     | {}                                    |
+| 2      | {}                                    | {(y, c_0)}                            |
+| 3      | {(y, c_0)}                            | {(y, c_0), (x, c_0), (x,y)}           |
+| 4      | {(y, c_0), (x, c_0), (x,y)}           | {(y, c_0), (x, c_0), (x,y), (z, c_1)} |
+| 5      | {(y, c_0), (z, c_1)}                  | {(y, c_0), (z, c_1)}                  |
+| 6      | {(y, c_0), (z, c_1)}                  | {(y, c_0), (z, c_1), (x, c_1), (x,z)} |
+| 7      | {(y, c_0), (z, c_1), (x, c_1), (x,z)} | {(y, c_0), (z, c_1), (x, c_1), (x,z)} |
+| 8      | {(y, c_0), (z, c_1), (x, c_1), (x,z)} | {(y, c_0), (z, c_1), (x, c_0), (x,y)} |
+| 9      | {(y, c_0), (z, c_1)}                  | -                                     |
 
 # Ejercicio 10 
 El analisis va a ser igual al del taller, es un analisis forward may. 
 
 
-| Iteracion | Nodo n | IN[n]                                  | OUT[n]                                 |
-|-----------|--------|----------------------------------------|----------------------------------------|
-| 1         | 1      | -                                      | {$y \to \bot, x \to \bot, z \to \bot$} |
-| 1         | 2      | {$y \to \bot, x \to \bot, z \to \bot$} | {$y \to 0, x \to \bot, z \to \bot$}    |
-| 1         | 3      | {$y \to 0, x \to \bot, z \to \bot$}    | {$y \to 0, x \to 0, z \to \bot$}       |
-| 1         | 4      | {$y \to 0, x \to 0, z \to \bot$}       | {$y \to 0, x \to 0, z \to +$}          |
-| 1         | 5      | {$y \to 0, x \to 0, z \to +$}          | {$y \to 0, x \to 0, z \to +$}          |
-| 1         | 6      | {$y \to 0, x \to 0, z \to +$}          | {$y \to 0, x \to +, z \to +$}          |
-| 1         | 7      | {$y \to 0, x \to +, z \to +$}          | {$y \to 0, x \to +, z \to +$}          |
-| 1         | 8      | {$y \to 0, x \to +, z \to +$}          | {$y \to 0, x \to 0, z \to +$}          |
-| 1         | 9      | {$y \to 0, x \to 0, z \to +$}          | -                                      |
-| 2         | 1      | -                                      | {$y \to \bot, x \to \bot, z \to \bot$} |
-| 2         | 2      | {$y \to \bot, x \to \bot, z \to \bot$} | {$y \to 0, x \to \bot, z \to \bot$}    |
-| 2         | 3      | {$y \to 0, x \to \bot, z \to \bot$}    | {$y \to 0, x \to 0, z \to \bot$}       |
-| 2         | 4      | {$y \to 0, x \to 0, z \to \bot$}       | {$y \to 0, x \to 0, z \to +$}          |
-| 2         | 5      | {$y \to 0, x \to \top, z \to +$}       | {$y \to 0, x \to \top, z \to +$}       |
-| 2         | 6      | {$y \to 0, x \to \top, z \to +$}       | {$y \to 0, x \to +, z \to +$}          |
-| 2         | 7      | {$y \to 0, x \to +, z \to +$}          | {$y \to 0, x \to +, z \to +$}          |
-| 2         | 8      | {$y \to 0, x \to +, z \to +$}          | {$y \to 0, x \to 0, z \to +$}          |
-| 2         | 9      | {$y \to 0, x \to 0, z \to +$}          | -                                      |
+| Iteracion | Nodo n | IN[n]                          | OUT[n]                         |
+|-----------|--------|--------------------------------|--------------------------------|
+| 1         | 1      | -                              | {y -> bot, x -> bot, z -> bot} |
+| 1         | 2      | {y -> bot, x -> bot, z -> bot} | {y -> 0, x -> bot, z -> bot}   |
+| 1         | 3      | {y -> 0, x -> bot, z -> bot}   | {y -> 0, x -> 0, z -> bot}     |
+| 1         | 4      | {y -> 0, x -> 0, z -> bot}     | {y -> 0, x -> 0, z -> +}       |
+| 1         | 5      | {y -> 0, x -> 0, z -> +}       | {y -> 0, x -> 0, z -> +}       |
+| 1         | 6      | {y -> 0, x -> 0, z -> +}       | {y -> 0, x -> +, z -> +}       |
+| 1         | 7      | {y -> 0, x -> +, z -> +}       | {y -> 0, x -> +, z -> +}       |
+| 1         | 8      | {y -> 0, x -> +, z -> +}       | {y -> 0, x -> 0, z -> +}       |
+| 1         | 9      | {y -> 0, x -> 0, z -> +}       | -                              |
+| 2         | 1      | -                              | {y -> bot, x -> bot, z -> bot} |
+| 2         | 2      | {y -> bot, x -> bot, z -> bot} | {y -> 0, x -> bot, z -> bot}   |
+| 2         | 3      | {y -> 0, x -> bot, z -> bot}   | {y -> 0, x -> 0, z -> bot}     |
+| 2         | 4      | {y -> 0, x -> 0, z -> bot}     | {y -> 0, x -> 0, z -> +}       |
+| 2         | 5      | {y -> 0, x -> top, z -> +}     | {y -> 0, x -> top, z -> +}     |
+| 2         | 6      | {y -> 0, x -> top, z -> +}     | {y -> 0, x -> +, z -> +}       |
+| 2         | 7      | {y -> 0, x -> +, z -> +}       | {y -> 0, x -> +, z -> +}       |
+| 2         | 8      | {y -> 0, x -> +, z -> +}       | {y -> 0, x -> 0, z -> +}       |
+| 2         | 9      | {y -> 0, x -> 0, z -> +}       | -                              |
 
-Entonces la tabla final va a ser: 
+Entonces la tabla final va a ser:
 
-| Nodo n | IN[n]                                  | OUT[n]                                 |
-|--------|----------------------------------------|----------------------------------------|
-| 1      | -                                      | {$y \to \bot, x \to \bot, z \to \bot$} |
-| 2      | {$y \to \bot, x \to \bot, z \to \bot$} | {$y \to 0, x \to \bot, z \to \bot$}    |
-| 3      | {$y \to 0, x \to \bot, z \to \bot$}    | {$y \to 0, x \to 0, z \to \bot$}       |
-| 4      | {$y \to 0, x \to 0, z \to \bot$}       | {$y \to 0, x \to 0, z \to +$}          |
-| 5      | {$y \to 0, x \to \top, z \to +$}       | {$y \to 0, x \to \top, z \to +$}       |
-| 6      | {$y \to 0, x \to \top, z \to +$}       | {$y \to 0, x \to +, z \to +$}          |
-| 7      | {$y \to 0, x \to +, z \to +$}          | {$y \to 0, x \to +, z \to +$}          |
-| 8      | {$y \to 0, x \to +, z \to +$}          | {$y \to 0, x \to 0, z \to +$}          |
-| 9      | {$y \to 0, x \to 0, z \to +$}          | -                                      |
+| Nodo n | IN[n]                          | OUT[n]                         |
+|--------|--------------------------------|--------------------------------|
+| 1      | -                              | {y -> bot, x -> bot, z -> bot} |
+| 2      | {y -> bot, x -> bot, z -> bot} | {y -> 0, x -> bot, z -> bot}   |
+| 3      | {y -> 0, x -> bot, z -> bot}   | {y -> 0, x -> 0, z -> bot}     |
+| 4      | {y -> 0, x -> 0, z -> bot}     | {y -> 0, x -> 0, z -> +}       |
+| 5      | {y -> 0, x -> top, z -> +}     | {y -> 0, x -> top, z -> +}     |
+| 6      | {y -> 0, x -> top, z -> +}     | {y -> 0, x -> +, z -> +}       |
+| 7      | {y -> 0, x -> +, z -> +}       | {y -> 0, x -> +, z -> +}       |
+| 8      | {y -> 0, x -> +, z -> +}       | {y -> 0, x -> 0, z -> +}       |
+| 9      | {y -> 0, x -> 0, z -> +}       | -                              |
 
 # Ejercicio 11
 
