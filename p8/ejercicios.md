@@ -9,20 +9,20 @@ Usando el algoritmo de Andersen:
 
 Las restricciones van a ser: 
 
-1. $\{A@1\} \subseteq L(a)$
-2. $\{B@2\} \subseteq L(b)$
-3. $L(b) \subseteq \cap \{E(k,f) | k \in L(a)\}$
+1. $\langle A@1\rangle \subseteq L(a)$
+2. $\langle B@2\rangle \subseteq L(b)$
+3. $L(b) \subseteq \cap \langle E(k,f) | k \in L(a)\rangle$
 4. $L(a) \subseteq L(c)$
-5. $L(a) \subseteq \cap \{E(k,f) | k \in L(c)\}$
+5. $L(a) \subseteq \cap \langle E(k,f) | k \in L(c)\rangle$
 6. $L(b) \subseteq L(c)$
 
 Y el analisis: 
 
-- $L(a) = \{A@1\}$
-- $L(b) = \{B@2\}$
-- $L(c) = \{A@1, B@2\}$
-- $E(A@1, f) = \{B@2, A@1\}$
-- $E(B@2, f) = \{A@1\}$
+- $L(a) = \langle A@1\rangle$
+- $L(b) = \langle B@2\rangle$
+- $L(c) = \langle A@1, B@2\rangle$
+- $E(A@1, f) = \langle B@2, A@1\rangle$
+- $E(B@2, f) = \langle A@1\rangle$
 
 El PTG final va a quedar: 
 <img src="images/p8e1c.png" alt="ptg">
@@ -35,20 +35,20 @@ EL PTG al final del programa utilizando un  análisis points-to flow-sensitive v
 
 Usando el algoritmo de Andersen: 
 Las restricciones van a ser: 
-1. $\{A@1\} \subseteq L(a)$
-2. $\{B@2\} \subseteq L(b)$
-3. $L(b) \subseteq \cap \{E(k,f) | k \in L(a)\}$
+1. $\langle A@1\rangle \subseteq L(a)$
+2. $\langle B@2\rangle \subseteq L(b)$
+3. $L(b) \subseteq \cap \langle E(k,f) | k \in L(a)\rangle$
 4. $L(b) \subseteq L(c)$
-5. $L(a) \subseteq \cap \{E(k,f) | k \in L(c)\}$
+5. $L(a) \subseteq \cap \langle E(k,f) | k \in L(c)\rangle$
 6. $L(a) \subseteq L(c)$
 
 Y el analisis va a ser: 
 
-- $L(a) = \{A@1\}$
-- $L(b) = \{B@2\}$
-- $L(c) = \{B@2, A@1\}$
-- $E(A@1, f) = \{B@2, A@1\}$
-- $E(B@2, f) = \{A@1\}$.
+- $L(a) = \langle A@1\rangle$
+- $L(b) = \langle B@2\rangle$
+- $L(c) = \langle B@2, A@1\rangle$
+- $E(A@1, f) = \langle B@2, A@1\rangle$
+- $E(B@2, f) = \langle A@1\rangle$.
 
 Que queda igual que en la version original del programa.  
 
@@ -56,27 +56,27 @@ Este experimento puede afirmar que el analisis de Andersen sobreaproxima versus 
 
 Usando el algoritmo de Steensgard en el programa original las restricciones van a ser: 
 
-1. $\{A@1\} = L(a)$
-2. $\{B@2\} = L(b)$
-3. $L(b) = \cap \{E(k,f) | k \in L(a)\}$
+1. $\langle A@1\rangle = L(a)$
+2. $\langle B@2\rangle = L(b)$
+3. $L(b) = \cap \langle E(k,f) | k \in L(a)\rangle$
 4. $L(a) = L(c)$
-5. $L(a) = \cap \{E(k,f) | k \in L(c)\}$
+5. $L(a) = \cap \langle E(k,f) | k \in L(c)\rangle$
 6. $L(b) = L(c)$
 
 Las restricciones actualizadas: 
-1. $\{A@1B@2\} = L(a)$
-2. $\{A@1B@2\} = L(b)$
-3. $L(b) = \cap \{E(k,f) | k \in L(a)\}$
+1. $\langle A@1B@2\rangle = L(a)$
+2. $\langle A@1B@2\rangle = L(b)$
+3. $L(b) = \cap \langle E(k,f) | k \in L(a)\rangle$
 4. $L(a) = L(c)$
-5. $L(a) = \cap \{E(k,f) | k \in L(c)\}$
+5. $L(a) = \cap \langle E(k,f) | k \in L(c)\rangle$
 6. $L(b) = L(c)$
 
 El analisis va a ser: 
 
-- $L(a) = \{A@1B@2\}$
-- $L(b) = \{A@1B@2\}$
-- $L(c) = \{A@1B@2\}$
-- $E(A@1B@2, f) = \{A@1B@2\}$
+- $L(a) = \langle A@1B@2\rangle$
+- $L(b) = \langle A@1B@2\rangle$
+- $L(c) = \langle A@1B@2\rangle$
+- $E(A@1B@2, f) = \langle A@1B@2\rangle$
 
 Y el PTG final va a ser: 
 
@@ -97,32 +97,32 @@ Usando cadenas de contexto con $K = 2$:
 
 Usando el algoritmo de Andersen sin contextos: 
 Las restricciones van a ser: 
-1. $\{H1@2\} \subseteq L(x)$
-2. $\{H2@3\} \subseteq L(z)$
+1. $\langle H1@2\rangle \subseteq L(x)$
+2. $\langle H2@3\rangle \subseteq L(z)$
 3. $L(x) \subseteq L(y)$
 4. $L(x) \subseteq L(w)$
 5. $L(z) \subseteq L(w)$
 
 Por lo tanto va a quedar: 
-- $L(x) = \{H1@2\}$
-- $L(z) = \{H2@3\}$
-- $L(y) = \{H1@2\}$
-- $L(w) = \{H1@2, H2@3\}$
+- $L(x) = \langle H1@2\rangle$
+- $L(z) = \langle H2@3\rangle$
+- $L(y) = \langle H1@2\rangle$
+- $L(w) = \langle H1@2, H2@3\rangle$
 
 Por lo que el PTG final va a ser: 
 <img src="images/p8e3a.png" alt="ptg">
 
 Si hacemos cloning, las restricciones van a ser: 
-1. $\{H1@2\} \subseteq L(x)$
-2. $\{H2@3\} \subseteq L(z)$
+1. $\langle H1@2\rangle \subseteq L(x)$
+2. $\langle H2@3\rangle \subseteq L(z)$
 4. $L(x) \subseteq L(y)$
 5. $L(z) \subseteq L(w)$
 
 Por lo tanto va a quedar: 
-- $L(x) = \{H1@2\}$
-- $L(z) = \{H2@3\}$
-- $L(y) = \{H1@2\}$
-- $L(w) = \{H2@3\}$
+- $L(x) = \langle H1@2\rangle$
+- $L(z) = \langle H2@3\rangle$
+- $L(y) = \langle H1@2\rangle$
+- $L(w) = \langle H2@3\rangle$
 
 Por lo tanto el PTG va a tener la forma: 
 <img src="images/p8e3bc.png" alt="ptg">
@@ -132,27 +132,26 @@ Lo mismo pasa usando contextos.
 # Ejercicio 4 
 Usando el algoritmo de Andersen sin contexto las restricciones van a ser: 
 
-1. $\{H1@2\} \subseteq L(x)$
-2. $\{H2@3\} \subseteq L(z)$
+1. $\langle H1@2\rangle \subseteq L(x)$
+2. $\langle H2@3\rangle \subseteq L(z)$
 
 TODO
 
 # Ejercicio 5
 Las restricciones van a ser: 
-1. $\{E1\} \subseteq L(e1)$
-2. $\{E2\} \subseteq L(e2)$
-3. $\{E3\} \subseteq L(e3)$
-4. $L(e2) \subseteq \cap \{E(k, \text{siguiente}) | k \in L(e1)\}$
-5. $L(e3) \subseteq \cap \{E(k, \text{siguiente}) | k \in L(e2)\}$
-6. $L(e1) \subseteq \cap \{E(k, \text{siguiente}) | k \in L(e3)\}$
-7. $\cup \{E(k, \text{siguiente}) | k \in L(e3)\} \subseteq L(e3)$
+1. $\langle E1\rangle \subseteq L(e1)$
+2. $\langle E2\rangle \subseteq L(e2)$
+3. $\langle E3\rangle \subseteq L(e3)$
+4. $L(e2) \subseteq \cap \langle E(k, \text{siguiente}) | k \in L(e1)\rangle$
+5. $L(e3) \subseteq \cap \langle E(k, \text{siguiente}) | k \in L(e2)\rangle$
+6. $L(e1) \subseteq \cap \langle E(k, \text{siguiente}) | k \in L(e3)\rangle$
+7. $\cup \langle E(k, \text{siguiente}) | k \in L(e3)\rangle \subseteq L(e3)$
 
-- $L(e1) = \{E1\}$
-- $L(e2) = \{E2\}$
-- $L(e3) = \{E3, E1, E2\}$
-- $E(E1, \text{siguiente}) = \{E2, E1\}$
-- $E(E2, \text{siguiente}) = \{E3, E1, E2\}$
-- $E(E3, \text{siguiente}) = \{E1\}$
+- $L(e1) = \langle E1\rangle$
+- $L(e2) = \langle E2\rangle$
+- $L(e3) = \langle E3, E1, E2\rangle$
+- $E(E1, \text{siguiente}) = \langle E2, E1\rangle$
+- $E(E2, \text{siguiente}) = \langle E3, E1, E2\rangle$
+- $E(E3, \text{siguiente}) = \langle E1\rangle$
 
 <img src="images/p8e5.png" alt="ptg">
-
