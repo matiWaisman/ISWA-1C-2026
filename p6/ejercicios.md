@@ -43,9 +43,11 @@ $$
 $$
 
 # Ejercicio 2 
-El poset de la izquierda no es un reticulado porque los dos elementos de arriba a los costados no tienen un supremo. 
+El poset de la izquierda no es un reticulado porque los dos elementos de arriba a los costados no tienen un supremo entre si.
+Para "arreglarlo" habria que agregar un elemento que sea mayor o igual a los tres elementos de arriba, de esa forma esta definido el supremo entre los dos elementos de la tercera fila en los costados como el elemento $\top$.
 
 El poset de la derecha tampoco es un reticulado porque agarrando a los elementos de los costados no se cumple que tengan un unico supremo/ infimo, dado que para ambos pares de puntos vale que los de abajo/arriba son menores/ mayores a los dos a la vez, por lo que no se cumple que sea unica esa cota superior/ inferior, por lo que no tienen infimo o supremo. 
+Para "arreglarlo", habria que eliminar una de las dos cross edges del medio. 
 
 # Ejercicio 3 
 ## Punto 1 
@@ -56,6 +58,8 @@ Cuyo diagrama de Hasse es:
 <img src="images/ej31.png" alt="hasse">
 
 Es un reticulado porque $\sqsubseteq$ es una relacion de orden y se cumple que $\forall x, y \in S$ existen tanto $x \sqcup y$ como $x \sqcap y$.
+
+Los elementos de S no son comparables porque no esta definida la relacion $\sqsubseteq$ entre ellos.
 
 ## Punto 2 
 El reticulado va a ser $\mathcal{P}(S), \subseteq$ donde $\bot = \emptyset$ y $\top = S$, $x \sqcup y = x \cup y$ y $x \sqcap y = x \cap y$.  
@@ -77,7 +81,7 @@ Suponiendo que ahora los elementos de $S$ cumplan $A \sqsubseteq B \sqsubseteq C
 $$
 \varphi(\sqcup X) =
 \begin{cases}
-+ & \text{si } + \in X, \\
+{+} & \text{si } + \in X, \\
 0 & \text{en caso contrario.}
 \end{cases}
 $$
