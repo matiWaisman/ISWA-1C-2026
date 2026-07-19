@@ -52,7 +52,7 @@ Y el analisis va a ser:
 
 Que queda igual que en la version original del programa.  
 
-Este experimento puede afirmar que el analisis de Andersen sobreaproxima versus el analis point-to flow-sensitive, porque en el algoritmo de Andersen estamos sobreaproximando $L(c)$. 
+Este experimento puede afirmar que el analisis de Andersen sobreaproxima versus el analis point-to flow-sensitive, porque el algoritmo de Andersen es flow-insensitive. 
 
 Usando el algoritmo de Steensgard en el programa original las restricciones van a ser: 
 
@@ -87,11 +87,17 @@ El PTG al final del programa utilizando un análisis points-to flow-sensitive si
 
 <img src="images/p8e2a.png" alt="ptg">
 
+Si solo se crea uno en $B_12$:
+
+<img src="images/p8e2aopc2.png" alt="ptg">
+
 Preguntar si el que es $K=1$ no es igual al anterior. 
 
 Usando cadenas de contexto con $K = 2$: 
 
 <img src="images/p8e2c.png" alt="ptg">
+
+
 
 # Ejercicio 3: 
 
@@ -100,13 +106,14 @@ Las restricciones van a ser:
 1. $\left\lbrace H1@2\right\rbrace \subseteq L(x)$
 2. $\left\lbrace H2@3\right\rbrace \subseteq L(z)$
 3. $L(x) \subseteq L(y)$
-4. $L(x) \subseteq L(w)$
-5. $L(z) \subseteq L(w)$
+4. $L(z) \subseteq L(y)$
+5. $L(x) \subseteq L(w)$
+6. $L(z) \subseteq L(w)$
 
 Por lo tanto va a quedar: 
 - $L(x) = \left\lbrace H1@2\right\rbrace$
 - $L(z) = \left\lbrace H2@3\right\rbrace$
-- $L(y) = \left\lbrace H1@2\right\rbrace$
+- $L(y) = \left\lbrace H1@2, H2@3\right\rbrace$
 - $L(w) = \left\lbrace H1@2, H2@3\right\rbrace$
 
 Por lo que el PTG final va a ser: 
@@ -134,8 +141,37 @@ Usando el algoritmo de Andersen sin contexto las restricciones van a ser:
 
 1. $\left\lbrace H1@2\right\rbrace \subseteq L(x)$
 2. $\left\lbrace H2@3\right\rbrace \subseteq L(z)$
+3. $L(x) \subseteq L(y)$
+4. $L(z) \subseteq L(y)$
+5. $L(z) \subseteq L(w)$
+6. $L(x) \subseteq L(w)$
 
-TODO
+Por lo tanto va a quedar: 
+- $L(x) = \left\lbrace H1@2\right\rbrace$
+- $L(z) = \left\lbrace H2@3\right\rbrace$
+- $L(y) = \left\lbrace H1@2, H2@3\right\rbrace$
+- $L(w) = \left\lbrace H1@2, H2@3\right\rbrace$
+
+Por lo tanto el PTG va a quedar: 
+<img src="images/p8e3a.png" alt="ptg">
+
+No se puede hacer cloning porque la funcion es recursiva, a lo sumo si se diera un parametro de cuantas veces clonarlo en ese caso se podria clonar esas $k$ veces. 
+
+Usando cadenas de longitud 2 va a ser el mismo PTG que antes. 
+
+Si usamos contextos funcionales: 
+1. $\left\lbrace H1@2\right\rbrace \subseteq L(x)$
+2. $\left\lbrace H2@3\right\rbrace \subseteq L(z)$
+3. $L(x) \subseteq L(y)$
+4. $L(z) \subseteq L(w)$
+
+Por lo tanto va a quedar: 
+- $L(x) = \left\lbrace H1@2\right\rbrace$
+- $L(z) = \left\lbrace H2@3\right\rbrace$
+- $L(y) = \left\lbrace H1@2\right\rbrace$
+- $L(w) = \left\lbrace H2@3\right\rbrace$
+
+<img src="images/p8e4d.png" alt="ptg">
 
 # Ejercicio 5
 Las restricciones van a ser: 
@@ -155,3 +191,30 @@ Las restricciones van a ser:
 - $E(E3, \text{siguiente}) = \left\lbrace E1\right\rbrace$
 
 <img src="images/p8e5.png" alt="ptg">
+
+# Ejercicio 6
+Las restricciones van a ser:
+
+1. $\left\lbrace A1 \right\rbrace = L(a)$
+2. $\left\lbrace A2 \right\rbrace = L(b)$
+3. $\left\lbrace A3 \right\rbrace = L(c)$
+4. $L(a) = L(d)$
+5. $L(b) = L(d)$
+6. $L(c) = \cap \left\lbrace E(k,f) | k \in L(d) \right\rbrace$
+7. $\cup \left\lbrace E(k,f) | k \in L(a) \right\rbrace = L(e)$
+
+Analizandolo: 
+
+- $L(a) = \left\lbrace A1@A2 \right\rbrace$
+- $L(b) = \left\lbrace A1@A2 \right\rbrace$
+- $L(c) = \left\lbrace A3 \right\rbrace$
+- $L(d) = \left\lbrace A1@A2 \right\rbrace$
+- $E(A1@A2, f) = \left\lbrace A3 \right\rbrace$
+- $L(e) = \left\lbrace A3 \right\rbrace$
+
+Con todo unificado el PTG es: 
+
+<img src="images/p8e6unificado.png" alt="ptg">
+
+Sin unificacion el PTG resultante es: 
+<img src="images/p8e6.png" alt="ptg">
