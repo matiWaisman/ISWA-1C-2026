@@ -20,7 +20,7 @@ $$
 
 $\bot = -\infty, \top = \infty$.
 
-Podemos definir $\sqcup X$ como:
+Va a ser un reticulado completo porque $\forall X \in S$ Podemos definir $\sqcup X$ como:
 
 $$
 \sqcup X =
