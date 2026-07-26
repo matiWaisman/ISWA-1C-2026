@@ -61,7 +61,7 @@ Si tomamos los minimos nos queda:
 
 | test_2 | distanceTrue | distanceFalse |
 |--------|--------------|---------------|
-| C1     | 0            | 8             |
+| C1     | 0            | 3             |
 | C2     | 5            | 0             |
 
 Si tomamos los minimos nos queda: 
