@@ -284,4 +284,4 @@ Control flow graph:
 | 5: s += xs[i]              | 0                          |
 | 7: s -= xs[i]              | 1                          |
 | 8: i += 1                  | 0                          |
-| 9: return s                |                            |
+| 9: return s                | 0                          |
