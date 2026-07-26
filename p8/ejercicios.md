@@ -87,15 +87,7 @@ El PTG al final del programa utilizando un análisis points-to flow-sensitive si
 
 <img src="images/p8e2a.png" alt="ptg">
 
-Si solo se crea uno en $B_12$:
-
-<img src="images/p8e2aopc2.png" alt="ptg">
-
-Preguntar si el que es $K=1$ no es igual al anterior. 
-
-Usando cadenas de contexto con $K = 2$: 
-
-<img src="images/p8e2c.png" alt="ptg">
+Va a ser igual tanto para $K = 1$ como para $K = 2$. 
 
 
 
@@ -205,11 +197,11 @@ Las restricciones van a ser:
 
 Analizandolo: 
 
-- $L(a) = \left\lbrace A1@A2 \right\rbrace$
-- $L(b) = \left\lbrace A1@A2 \right\rbrace$
+- $L(a) = \left\lbrace A1\text{@}A2 \right\rbrace$
+- $L(b) = \left\lbrace A1\text{@}A2 \right\rbrace$
 - $L(c) = \left\lbrace A3 \right\rbrace$
-- $L(d) = \left\lbrace A1@A2 \right\rbrace$
-- $E(A1@A2, f) = \left\lbrace A3 \right\rbrace$
+- $L(d) = \left\lbrace A1\text{@}A2 \right\rbrace$
+- $E(A1\text{@}A2, f) = \left\lbrace A3 \right\rbrace$
 - $L(e) = \left\lbrace A3 \right\rbrace$
 
 Con todo unificado el PTG es: 
