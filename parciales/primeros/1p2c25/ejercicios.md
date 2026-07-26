@@ -106,12 +106,12 @@ def test_1(self):
 El valor del approach level para cada uno de los nodos va a ser igual a cero, excepto para el nodo F que va a tener approach level igual a uno. 
 
 El valor de la distancia de branch no normalizada para cada desicion va a ser: 
-| Nodo | Distancia de Branch no normalizada |
-|------|------------------------------------|
-| D    | 0                                  |
-| E    | 1 + 1 = 2                          |
+| Nodo | Distancia True | Distancia False |
+|------|----------------|-----------------|
+| D    | 0              | 0               |
+| E    | 1 + 1 = 2      | 0               |
 
-El cubrimiento de branches del test suite es del 75$. 
+El cubrimiento de branches del test suite es del 75%. 
 
 # Ejercicio 4 
 | input | lineas cubiertas                                                                                                                                  | frecuencia | energia                                            |
