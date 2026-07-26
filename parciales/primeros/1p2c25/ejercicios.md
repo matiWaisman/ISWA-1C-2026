@@ -103,7 +103,7 @@ def test_1(self):
     self.assertEqual(0, test_me(0,13))
 ```
 
-El valor del approach level para cada uno de los nodos va a ser igual a cero, excepto para el nodo F que va a tener approach level igual a cero. 
+El valor del approach level para cada uno de los nodos va a ser igual a cero, excepto para el nodo F que va a tener approach level igual a uno. 
 
 El valor de la distancia de branch no normalizada para cada desicion va a ser: 
 | Nodo | Distancia de Branch no normalizada |
