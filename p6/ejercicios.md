@@ -31,7 +31,7 @@ $$
 \end{cases}
 $$
 
-Y podemos definir a $\sqcap X$ como:
+Va a ser un reticulado completo porque $\forall X \in S$ podemos definir a $\sqcap X$ como:
 
 $$
 \sqcap X =
