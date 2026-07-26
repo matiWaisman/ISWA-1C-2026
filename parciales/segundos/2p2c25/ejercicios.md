@@ -12,49 +12,49 @@ Las expresiones aritmeticas en el codigo son:
 El estado inicial seria:
 
 | Nodo n | IN[n]                                                 | OUT[n]                                                |
-|--------|-------------------------------------------------------|-------------------------------------------------------|
-| 1      | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ |
-| 2      | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ |
-| 3      | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ |
-| 4      | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ |
-| 5      | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ |
-| 6      | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ |
-| 7      | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ |
-| 8      | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ |
-| 9      | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ |
-| 10     | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ |
-| 11     | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ |
-| 12     | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ | $\left\lbrace a + c, t + b, t - b, b - 1, (a + c) * n, b \% 2 == 0 \right\rbrace$ |
-| 13     | $\left\lbrace b \% 2 == 0 \right\rbrace$                                          | $\left\lbrace a + c, b \% 2 == 0, t + b, t - b, b - 1, (a + c) * n \right\rbrace$ |
+|--------|--------------------------------------------------------|--------------------------------------------------------|
+| 1      | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         |
+| 2      | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         |
+| 3      | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         |
+| 4      | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         |
+| 5      | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         |
+| 6      | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         |
+| 7      | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         |
+| 8      | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         |
+| 9      | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         |
+| 10     | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         |
+| 11     | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         |
+| 12     | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         | $\{a+c,\ t+b,\ t-b,\ b-1,\ (a+c)*n,\ b\%2==0\}$         |
+| 13     | $\{b\%2==0\}$                                           | $\{a+c,\ b\%2==0,\ t+b,\ t-b,\ b-1,\ (a+c)*n\}$         |
 
-| Iteración | Nodo n | IN[n]                      | OUT[n]              |
-|-----------|--------|----------------------------|---------------------|
-| 1         | 1      | -                          | $\left\lbrace\right\rbrace$                  |
-| 1         | 2      | $\left\lbrace\right\rbrace$                         | $\left\lbrace\right\rbrace$                  |
-| 1         | 3      | $\left\lbrace\right\rbrace$                         | $\left\lbrace\right\rbrace$                  |
-| 1         | 4      | $\left\lbrace\right\rbrace$                         | $\left\lbrace\right\rbrace$                  |
-| 1         | 5      | $\left\lbrace\right\rbrace$                         | $\left\lbrace\right\rbrace$                  |
-| 1         | 6      | $\left\lbrace b - 1, b \% 2 == 0, a + c \right\rbrace$ | $\left\lbrace b - 1, b \% 2 == 0 \right\rbrace$ |
-| 1         | 7      | $\left\lbrace b - 1, b \% 2 == 0 \right\rbrace$        | $\left\lbrace b - 1 \right\rbrace$             |
-| 1         | 8      | $\left\lbrace b - 1, t + b \right\rbrace$             | $\left\lbrace b - 1 \right\rbrace$             |
-| 1         | 9      | $\left\lbrace b - 1, t - b \right\rbrace$             | $\left\lbrace b - 1 \right\rbrace$             |
-| 1         | 10     | $\left\lbrace b - 1 \right\rbrace$                    | $\left\lbrace\right\rbrace$                  |
-| 1         | 11     | $\left\lbrace (a + c) * n \right\rbrace$              | $\left\lbrace\right\rbrace$                  |
-| 1         | 12     | $\left\lbrace\right\rbrace$                         | $\left\lbrace\right\rbrace$                  |
-| 1         | 13     | $\left\lbrace\right\rbrace$                         | -                   |
-| 2         | 1      | -                          | $\left\lbrace\right\rbrace$                  |
-| 2         | 2      | $\left\lbrace\right\rbrace$                         | $\left\lbrace\right\rbrace$                  |
-| 2         | 3      | $\left\lbrace\right\rbrace$                         | $\left\lbrace\right\rbrace$                  |
-| 2         | 4      | $\left\lbrace\right\rbrace$                         | $\left\lbrace\right\rbrace$                  |
-| 2         | 5      | $\left\lbrace\right\rbrace$                         | $\left\lbrace\right\rbrace$                  |
-| 2         | 6      | $\left\lbrace b - 1, b \% 2 == 0, a + c \right\rbrace$ | $\left\lbrace b - 1, b \% 2 == 0 \right\rbrace$ |
-| 2         | 7      | $\left\lbrace b - 1, b \% 2 == 0 \right\rbrace$        | $\left\lbrace b - 1 \right\rbrace$             |
-| 2         | 8      | $\left\lbrace b - 1, t + b \right\rbrace$             | $\left\lbrace b - 1 \right\rbrace$             |
-| 2         | 9      | $\left\lbrace b - 1, t - b \right\rbrace$             | $\left\lbrace b - 1 \right\rbrace$             |
-| 2         | 10     | $\left\lbrace b - 1 \right\rbrace$                    | $\left\lbrace\right\rbrace$                  |
-| 2         | 11     | $\left\lbrace (a + c) * n \right\rbrace$              | $\left\lbrace\right\rbrace$                  |
-| 2         | 12     | $\left\lbrace\right\rbrace$                         | $\left\lbrace\right\rbrace$                  |
-| 2         | 13     | $\left\lbrace\right\rbrace$                         | -                   |
+| Iteración | Nodo n | IN[n]                                | OUT[n]                        |
+|-----------|--------|----------------------------------------|--------------------------------|
+| 1         | 1      | -                                       | $\{\}$                         |
+| 1         | 2      | $\{\}$                                  | $\{\}$                         |
+| 1         | 3      | $\{\}$                                  | $\{\}$                         |
+| 1         | 4      | $\{\}$                                  | $\{\}$                         |
+| 1         | 5      | $\{\}$                                  | $\{\}$                         |
+| 1         | 6      | $\{b-1,\ b\%2==0,\ a+c\}$                | $\{b-1,\ b\%2==0\}$             |
+| 1         | 7      | $\{b-1,\ b\%2==0\}$                      | $\{b-1\}$                       |
+| 1         | 8      | $\{b-1,\ t+b\}$                          | $\{b-1\}$                       |
+| 1         | 9      | $\{b-1,\ t-b\}$                          | $\{b-1\}$                       |
+| 1         | 10     | $\{b-1\}$                                | $\{\}$                          |
+| 1         | 11     | $\{(a+c)*n\}$                            | $\{\}$                          |
+| 1         | 12     | $\{\}$                                   | $\{\}$                          |
+| 1         | 13     | $\{\}$                                   | -                                |
+| 2         | 1      | -                                        | $\{\}$                          |
+| 2         | 2      | $\{\}$                                   | $\{\}$                          |
+| 2         | 3      | $\{\}$                                   | $\{\}$                          |
+| 2         | 4      | $\{\}$                                   | $\{\}$                          |
+| 2         | 5      | $\{\}$                                   | $\{\}$                          |
+| 2         | 6      | $\{b-1,\ b\%2==0,\ a+c\}$                | $\{b-1,\ b\%2==0\}$             |
+| 2         | 7      | $\{b-1,\ b\%2==0\}$                      | $\{b-1\}$                       |
+| 2         | 8      | $\{b-1,\ t+b\}$                          | $\{b-1\}$                       |
+| 2         | 9      | $\{b-1,\ t-b\}$                          | $\{b-1\}$                       |
+| 2         | 10     | $\{b-1\}$                                | $\{\}$                          |
+| 2         | 11     | $\{(a+c)*n\}$                            | $\{\}$                          |
+| 2         | 12     | $\{\}$                                   | $\{\}$                          |
+| 2         | 13     | $\{\}$                                   | -                                |
 
 # Ejercicio 2
 El reticulado va a ser:
