@@ -20,7 +20,7 @@ $$
 
 $\bot = -\infty, \top = \infty$.
 
-Podemos definir $\sqcup X$ como:
+Va a ser un reticulado completo porque $\forall X \in S$ Podemos definir $\sqcup X$ como:
 
 $$
 \sqcup X =
@@ -31,7 +31,7 @@ $$
 \end{cases}
 $$
 
-Va a ser un reticulado completo porque $\forall X \in S$ podemos definir a $\sqcap X$ como:
+Y podemos definir a $\sqcap X$ como:
 
 $$
 \sqcap X =
